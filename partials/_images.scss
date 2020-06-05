@@ -33,7 +33,3 @@ img.object-fit {
 .bg-img {
     @include background-image;
 }
-
-.splash-bg {
-    @include background-image($splash-bg, $y: 10%, $responsive: true);
-}

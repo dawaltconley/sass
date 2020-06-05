@@ -1,0 +1,17 @@
+{
+  "name": "@dawaltconley/sass",
+  "version": "0.1.0",
+  "description": "A highly customizeable sass library.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dylan Awalt-Conley",
+  "license": "ISC",
+  "dependencies": {
+    "normalize.css": "^8.0.1",
+    "object-fit-images": "^3.2.4",
+    "sass": "^1.26.7",
+    "sass-color-helpers": "^2.1.1"
+  }
+}
