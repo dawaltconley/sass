@@ -116,7 +116,6 @@ $angles: ("top": 0deg, "bottom": 180deg, "left": 90deg, "right": 270deg);
 @import "../node_modules/sass-color-helpers/stylesheets/_color-helpers.scss";
 
 @import
-    "variables",
     "functions/manifest",
     "mixins/manifest"
 ;
