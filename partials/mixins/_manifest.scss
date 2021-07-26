@@ -1,6 +1,6 @@
 @forward "convenience";
 @forward "themes";
 @forward "wrappers";
-@forward "images";
-@forward "parallax";
-@forward "animations";
+@forward "images" as image-*;
+@forward "parallax" as parallax-*;
+@forward "animations" as animate-*;

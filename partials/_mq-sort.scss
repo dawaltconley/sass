@@ -1,7 +1,9 @@
+@use 'mixins/images';
+
 .breakpoint-media-queries {
     @include mq { /* mq */ }
 }
 
 .responsive-image-media-queries {
-    @include responsive-image('unset');
+    @include images.responsive('unset');
 }

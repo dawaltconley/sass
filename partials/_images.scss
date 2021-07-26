@@ -1,4 +1,6 @@
 @use "sass:string";
+@use "mixins/images";
+
 /*
  * Images
  */
@@ -32,5 +34,5 @@ img.object-fit {
 }
 
 .bg-img {
-    @include background-image;
+    @include images.background;
 }

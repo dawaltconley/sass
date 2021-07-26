@@ -6,7 +6,7 @@
 $device-dp:             () !default;
 $device-dppx:           () !default;
 
-@mixin responsive-image ($image, $breakpoints: $device-dp, $densities: $device-dppx) {
+@mixin responsive($image, $breakpoints: $device-dp, $densities: $device-dppx) {
     @if $breakpoints and list.length($breakpoints) > 0 {
         $file-types: jpg, jpeg, png, gif, svg, webp;
 
@@ -84,7 +84,7 @@ $device-dppx:           () !default;
     }
 }
 
-@mixin background-image($image: none, $x: center, $y: center, $size: cover, $repeat: no-repeat, $lighten: 0, $darken: 0, $blur: null, $responsive: false) {
+@mixin background($image: none, $x: center, $y: center, $size: cover, $repeat: no-repeat, $lighten: 0, $darken: 0, $blur: null, $responsive: false) {
 
     @if $blur {
         @extend .relative, .overflow-h;

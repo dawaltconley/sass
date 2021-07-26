@@ -12,7 +12,7 @@
 
 $swipe-animation-count: 0;
 
-@mixin swipe-anim($items, $dir: left, $dist: 20%, $dur: 4s, $trans: 0.5s, $init-delay: 0s, $load-delay: 0s, $y: 0, $overlap: false) {
+@mixin swipe($items, $dir: left, $dist: 20%, $dur: 4s, $trans: 0.5s, $init-delay: 0s, $load-delay: 0s, $y: 0, $overlap: false) {
     $swipe-animation-count: $swipe-animation-count + 1 !global;
     $swipe-animation-name: swipe-animation-#{$swipe-animation-count}; // give the keyframe a unique name
 
