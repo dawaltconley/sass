@@ -1,3 +1,5 @@
+@use "node_modules/sass-color-helpers/stylesheets/_color-helpers.scss" as ch;
+
 @mixin themeify($selectors...) {
     $group: ();
     @each $selector in $selectors {
@@ -21,15 +23,15 @@
     $aa: to-upper-case($accessibility) == "AA";
     $aaa: to-upper-case($accessibility) == "AAA";
 
-    $ct-tx-bg: ch-color-contrast($background-color, $text-color);
+    $ct-tx-bg: ch.ch-color-contrast($background-color, $text-color);
 
     @if ($ct-tx-bg < 4.5 and $aa) or ($ct-tx-bg < 7 and $aaa) {
         @warn "The contrast ratio of the '#{$name}' theme's text (#{$text-color}) and background (#{$background-color}) colors is #{$ct-tx-bg}, which does not meet WCAG 2.0 #{if($aaa, "AAA standard (7)", "AA standard (4.5)")}.";
     }
 
     @if $brand-color {
-        $ct-br-tx: ch-color-contrast($brand-color, $text-color);
-        $ct-br-bg: ch-color-contrast($brand-color, $background-color);
+        $ct-br-tx: ch.ch-color-contrast($brand-color, $text-color);
+        $ct-br-bg: ch.ch-color-contrast($brand-color, $background-color);
 
         @if $ct-br-tx < 3 and $aa {
             @warn "The contrast ratio of the '#{$name}' theme's link (#{$brand-color}) and text (#{$text-color}) colors is #{$ct-br-tx}, which does not meet WCAG 2.0 AA standard (3).";

@@ -112,36 +112,33 @@ $angles: ("top": 0deg, "bottom": 180deg, "left": 90deg, "right": 270deg);
 
 // Imports
 
-@import "../node_modules/normalize.css/normalize.css";
-@import "../node_modules/sass-color-helpers/stylesheets/_color-helpers.scss";
-
 @import
-    "functions/manifest",
-    "mixins/manifest"
+    "partials/functions/manifest",
+    "partials/mixins/manifest"
 ;
 
-@import "mq-sort";
+@import "partials/mq-sort";
 
 @import
-    "base",
-    "themes",
-    "display",
-    "layout",
-    "containers",
-    "wrappers",
-    "inline",
-    "tables",
-    "flexbox",
-    "text",
-    "links",
-    "images",
-    "shadows",
-    "icons",
-    "transforms",
-    "pseudo",
-    "transitions",
-    "header",
-    "parallax",
-    "media-queries",
-    "javascript"
+    "partials/base",
+    "partials/themes",
+    "partials/display",
+    "partials/layout",
+    "partials/containers",
+    "partials/wrappers",
+    "partials/inline",
+    "partials/tables",
+    "partials/flexbox",
+    "partials/text",
+    "partials/links",
+    "partials/images",
+    "partials/shadows",
+    "partials/icons",
+    "partials/transforms",
+    "partials/pseudo",
+    "partials/transitions",
+    "partials/header",
+    "partials/parallax",
+    "partials/media-queries",
+    "partials/javascript"
 ;
