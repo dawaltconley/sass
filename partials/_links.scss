@@ -1,3 +1,4 @@
+@use "sass:map";
 /*
  * Links
  */
@@ -34,7 +35,7 @@
     text-align: center;
     text-shadow: none;
     border-radius: 7px;
-    transition-duration: map-get($transitions, default);
+    transition-duration: map.get($transitions, default);
     transition-property: color, background-color;
 }
 

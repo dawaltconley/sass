@@ -1,8 +1,9 @@
+@use "sass:map";
 /*
  * Site header
  */
 
-@media screen and (max-width: map-get($bp, header)) {
+@media screen and (max-width: map.get($bp, header)) {
     [data-menu-links] {
         height: auto;
         max-height: 0;
@@ -15,7 +16,7 @@
     }
 
     [data-menu-link] {
-        $spacing: map-get($spacings, m);
+        $spacing: map.get($spacings, m);
         height: auto;
         padding-left: $spacing;
         padding-right: $spacing;

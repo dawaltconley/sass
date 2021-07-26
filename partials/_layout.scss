@@ -1,3 +1,5 @@
+@use "sass:list";
+@use "sass:map";
 @use "functions/sides";
 
 /*
@@ -47,12 +49,12 @@
     $width: null;
     $height: null;
 
-    @if length($size) == 1 {
+    @if list.length($size) == 1 {
         $width: $size;
         $height: $size;
-    } @else if length($size) == 2 {
-        $width: nth($size, 1);
-        $height: nth($size, 2);
+    } @else if list.length($size) == 2 {
+        $width: list.nth($size, 1);
+        $height: list.nth($size, 2);
     } @else {
         @error "Wrong number of values in #{$name} size.";
     }
@@ -88,8 +90,8 @@
 
 #header.header-size, #header.header-height {
     & + .parallax-group {
-        $hh: map-get($sizes, header);
-        $hh: nth($hh, length($hh));
+        $hh: map.get($sizes, header);
+        $hh: list.nth($hh, list.length($hh));
         margin-top: -$hh;
         padding-top: $hh;
     }
@@ -119,7 +121,7 @@
         margin-left: 0;
     }
 
-    @media screen and (max-width: map-get($bp, tablet)) {
+    @media screen and (max-width: map.get($bp, tablet)) {
         margin-left: $default-spacing;
 
         & & & { // stop indenting after 2 levels
@@ -176,7 +178,7 @@
  * Z-Axis
  */
 
-@for $i from nth($z-range, 1) through nth($z-range, 2) {
+@for $i from list.nth($z-range, 1) through list.nth($z-range, 2) {
     $class-name: if($i < 0, z-neg-#{($i * -1)}, z-#{$i});
 
     .#{$class-name} {
@@ -187,12 +189,12 @@
 
 .front {
     @extend .relative;
-    z-index: nth($z-range, 2) + 1;
+    z-index: list.nth($z-range, 2) + 1;
 }
 
 .back {
     @extend .relative;
-    z-index: nth($z-range, 1) - 1;
+    z-index: list.nth($z-range, 1) - 1;
 }
 
 /*
@@ -202,10 +204,10 @@
 @each $name, $styles in $borders {
     .border-#{$name} {
         @include sides.all {
-            border-#{$side}-width: map-get($styles, width);
-            border-#{$side}-style: map-get($styles, style);
-            @if map-has-key($styles, color) {
-                border-#{$side}-color: map-get($styles, color) !important;
+            border-#{$side}-width: map.get($styles, width);
+            border-#{$side}-style: map.get($styles, style);
+            @if map.has-key($styles, color) {
+                border-#{$side}-color: map.get($styles, color) !important;
             }
         }
     }
@@ -213,10 +215,10 @@
     .h-line-#{$name} {
         @extend %h-line;
         &::before, &::after {
-            border-top-width: map-get($styles, width);
-            border-top-style: map-get($styles, style);
-            @if map-has-key($styles, color) {
-                border-top-color: map-get($styles, color) !important;
+            border-top-width: map.get($styles, width);
+            border-top-style: map.get($styles, style);
+            @if map.has-key($styles, color) {
+                border-top-color: map.get($styles, color) !important;
             }
         }
     }

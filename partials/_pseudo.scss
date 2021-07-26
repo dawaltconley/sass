@@ -1,3 +1,5 @@
+@use "sass:map";
+@use "sass:string";
 /*
  * Hover
  */
@@ -95,11 +97,11 @@
 
 .hover-shadow {
     @each $side in $sides {
-        &-#{str-slice($side, 1, 1)} {
+        &-#{string.slice($side, 1, 1)} {
             @extend %hover-shadow;
 
             &::before {
-                background: linear-gradient(map-get($angles, $side), rgba(black, 0.3), rgba(black, 0));
+                background: linear-gradient(map.get($angles, $side), rgba(black, 0.3), rgba(black, 0));
             }
         }
     }
@@ -163,7 +165,7 @@
         content: "";
         position: absolute;
         left: 0; right: 0; bottom: 0;
-        height: map-get($spacings, l);
+        height: map.get($spacings, l);
         pointer-events: none;
     }
 }
