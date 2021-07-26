@@ -1,3 +1,5 @@
+@use '../functions/strings';
+
 @mixin responsive-image ($image, $breakpoints: $device-dp, $densities: $device-dppx) {
     @if $breakpoints and length($breakpoints) > 0 {
         $file-types: jpg, jpeg, png, gif, svg, webp;
@@ -67,7 +69,7 @@
 
                 @media #{$media-queries} {
                     $suffix: "-#{$x}x#{$y}-#{$d}x"; // Suffix background image to match one produced by gulpfile
-                    background-image: file-suffix($image, $suffix, $file-types);
+                    background-image: strings.file-suffix($image, $suffix, $file-types);
                 }
             }
         }

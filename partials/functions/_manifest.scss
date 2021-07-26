@@ -1,6 +1,6 @@
-@use "compare";
-@use "lists";
+@forward "compare" as compare-*;
+@forward "lists" as list-*;
 @forward "selectors" as selector-*;
 @forward "maps" as map-*;
-@use "strings";
+@forward "strings" as string-*;
 @forward "sides" as sides-*;

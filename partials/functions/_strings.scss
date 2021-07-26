@@ -1,5 +1,6 @@
 @use "sass:list";
 @use "sass:string";
+
 @function file-suffix($file-name, $suffix, $extension: ".") {
     $return: ();
     $separator: list.separator($file-name);
