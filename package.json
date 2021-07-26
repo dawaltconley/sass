@@ -12,5 +12,12 @@
     "normalize.css": "^8.0.1",
     "object-fit-images": "^3.2.4",
     "sass-color-helpers": "^2.1.1"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^0.12.1",
+    "eslint": "^7.31.0",
+    "gulp": "^4.0.2",
+    "gulp-sass": "^5.0.0",
+    "sass": "^1.36.0"
   }
 }
