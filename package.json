@@ -4,6 +4,8 @@
   "description": "Reuseable & customizeable sass library.",
   "main": "_index.scss",
   "scripts": {
+    "build": "npx gulp build ; npx @11ty/eleventy",
+    "serve": "npx gulp serve & npx @11ty/eleventy --serve",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Dylan Awalt-Conley",
