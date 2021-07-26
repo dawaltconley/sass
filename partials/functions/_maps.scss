@@ -15,7 +15,7 @@
     }
 
     @if list.length($map) > 1 {
-        $seed: list.nth($map, math.ceil(list.length($map) / 2));
+        $seed: list.nth($map, math.ceil(list.length($map) * 0.5));
         $seed: list.nth($seed, if($values, 2, 1));
 
         @each $k, $v in $map {

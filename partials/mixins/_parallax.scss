@@ -25,8 +25,8 @@ $perspective: 2000px !default;
     top: 0; bottom: 0; left: 0; right: 0;
 
     @include support {
-        $scale: 1 + math.abs($depth / $perspective);
-        $height-adjust: calc(#{ 1 - (1 / $scale) } * (50% - 50vh));
+        $scale: 1 + math.abs(math.div($depth, $perspective));
+        $height-adjust: calc(#{ 1 - math.div(1, $scale) } * (50% - 50vh));
         top: $height-adjust; bottom: $height-adjust;
         -webkit-transform-origin: right;
         transform-origin: right;

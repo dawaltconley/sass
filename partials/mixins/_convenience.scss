@@ -50,7 +50,7 @@
 @mixin fixed-ratio($x, $y, $width: 100%) {
     width: $width;
     height: 0;
-    padding-top: $y/$x * $width;
+    padding-top: math.div($y, $x) * $width;
 }
 
 @mixin bg-video-wrapper($x: 100vw, $y: 100vh, $ratio: 16/9) {
@@ -63,7 +63,7 @@
 
     > iframe {
         width: $x;
-        height: $x / $ratio;
+        height: math.div($x, $ratio);
         min-width: $y * $ratio;
         min-height: $y;
     }
@@ -71,13 +71,13 @@
 
 @mixin columns($columns, $spacing: 0px, $offset: null) {
     @if not($columns > 1) { @error "columns mixin must have more than one column." }
-    $width: 100% / $columns;
+    $width: math.div(100%, $columns);
     $row-end: $columns + "n";
     @if $offset {
         $row-end: $row-end + "+#{$offset}";
     }
 
-    width: calc(#{$width} - #{($spacing * ($columns - 1) / $columns)});
+    width: calc(#{$width} - #{math.div($spacing * ($columns - 1), $columns)});
     margin-right: $spacing;
     margin-bottom: $spacing;
 

@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @mixin animate($delay: 0s) {
     .animate & {
         @content;
@@ -16,13 +18,13 @@ $swipe-animation-count: 0;
 
     $total-dur: if($overlap, $dur + $trans, $dur + (2 * $trans)); // total time element is animating or visible
 
-    $trans-ratio: $trans / $total-dur; // percentage of total animation time taken by single transition
-    $start: 100% / $items * $trans-ratio; // frame at which the element should be visible (first animation concluded)
-    $end: 100% / $items * (1 - $trans-ratio); // frame at which the element should begin to fade out (second animation begins)
-    $pause: 100% / $items; // frame at which the element has faded out and is waiting for next cycle
+    $trans-ratio: math.div($trans, $total-dur); // percentage of total animation time taken by single transition
+    $start: math.div(100%, $items) * $trans-ratio; // frame at which the element should be visible (first animation concluded)
+    $end: math.div(100%, $items) * (1 - $trans-ratio); // frame at which the element should begin to fade out (second animation begins)
+    $pause: math.div(100%, $items); // frame at which the element has faded out and is waiting for next cycle
 
     @if $overlap {
-        $trans-percent: $trans-ratio / $items * 100%;
+        $trans-percent: math.div($trans-ratio, $items) * 100%;
         $end: $end + $trans-percent;
         $pause: $pause + $trans-percent;
     }
@@ -86,10 +88,10 @@ $slide-animation-count: 0;
     $slide-animation-name: slide-animation-#{$slide-animation-count}; // give the keyframe a unique name
 
     $total-dur: $dur + $trans;                     // animation time for single element
-    $trans-ratio: $trans / $total-dur;             // fraction of animation time taken by single element's transition
-    $trans-percent: $trans-ratio / $items * 100%;  // percent of animation time taken by single element's transition relative to whole cycle
-    $fade-start: 100% / $items;                    // frame at which the element should begin to fade out (second animation begins)
-    $fade-end: 100% / $items + $trans-percent;     // frame at which the element has faded out and is waiting for next cycle
+    $trans-ratio: math.div($trans, $total-dur);             // fraction of animation time taken by single element's transition
+    $trans-percent: math.div($trans-ratio, $items) * 100%;  // percent of animation time taken by single element's transition relative to whole cycle
+    $fade-start: math.div(100%, $items);                    // frame at which the element should begin to fade out (second animation begins)
+    $fade-end: math.div(100%, $items) + $trans-percent;     // frame at which the element has faded out and is waiting for next cycle
 
     @keyframes #{$slide-animation-name} {
         0% {

@@ -9,7 +9,7 @@
     $large: ();
 
     @if list.length($list) > 1 {
-        $seed: list.nth($list, math.ceil(list.length($list) / 2));
+        $seed: list.nth($list, math.ceil(list.length($list) * 0.5));
 
         @each $item in $list {
             @if $item == $seed {

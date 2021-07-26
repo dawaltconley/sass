@@ -55,10 +55,10 @@ $side: null;
     $light-text: null; $light-theme: null; $ld-tx-bg: null; $ld-br-tx: null; $ld-br-bg: null; $ct-tx-bg: null; $ct-br-tx: null; $ct-br-bg: null;
 
     $light-theme: color.lightness($text-color) < color.lightness($background-color);
-    $ld-tx-bg: math.abs(color.lightness($text-color) - color.lightness($background-color)) / 100%;
+    $ld-tx-bg: math.div(math.abs(color.lightness($text-color) - color.lightness($background-color)), 100%);
     @if $brand-color {
-        $ld-br-tx: math.abs(color.lightness($brand-color) - color.lightness($text-color)) / 100%;
-        $ld-br-bg: math.abs(color.lightness($brand-color) - color.lightness($background-color)) / 100%;
+        $ld-br-tx: math.div(math.abs(color.lightness($brand-color) - color.lightness($text-color)), 100%);
+        $ld-br-bg: math.div(math.abs(color.lightness($brand-color) - color.lightness($background-color)), 100%);
     }
 
     @if $light-theme {
@@ -88,7 +88,7 @@ $side: null;
         $box-color: if($light-theme,
             color.adjust($background-color, $lightness: -($ld-tx-bg * 15%)),
             color.adjust($background-color, $lightness: $ld-tx-bg * 15%));
-        $box-color: color.adjust($box-color, $saturation: -(color.saturation($box-color) / 2) );
+        $box-color: color.adjust($box-color, $saturation: -(color.saturation($box-color) * 0.5) );
         color: color.mix($text-color, $box-color, 80%);
         border-color: color.adjust($box-color, $lightness: -($ld-tx-bg * if($light-theme, 25%, 10%)));
         background-color: $box-color;
