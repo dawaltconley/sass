@@ -1,3 +1,101 @@
+// Build Variables
+
+$baseurl:               "" !default;
+
+$native-scroll:         false !default;
+
+$fa-icons:              () !default;
+
+$device-dp:             () !default;
+
+$device-dppx:           () !default;
+
+// Basic Variables
+
+$base-font-family:      "Raleway", sans-serif !default;
+$base-font-weight:      400 !default;
+$base-line-height:      1.4 !default;
+$base-line-length:      36em !default;
+
+$heading-sizes:          2em, 1.2em, 1.1em !default;
+$heading-font-family:    null !default;
+$heading-font-weight:    600 !default;
+
+$text-shadow:           1px 1px 4px rgba(0, 0, 0, 0.2) !default;
+$full-shadow:           0 0 0.24em black !default;
+
+$perspective:           2000px !default;
+
+// Generated Classes
+
+$themes: (
+    "light": (
+        text-color: #171717,
+        background-color: white,
+        brand-color: royalblue,
+    ),
+    "dark": (
+        text-color: white,
+        background-color: #171717,
+        brand-color: royalblue,
+    ),
+) !default;
+
+$theme-depth: 1 !default; // controls the depth (in a series nested themes) at which an element still inherits the styles of its immediate ancestor theme. stylesheets get much larger and more complex as this number increases, so it should be set as low as possible.
+
+$font-sizes: (
+    "base": 1.25rem,
+    "icon": 1.5rem,
+) !default;
+
+$base-font-size: map-get($font-sizes, base) !default;
+
+$sizes: (
+    "full":             100%,
+    "half":             50%,
+    "screen":           100vw 100vh,
+    "half-screen":      50vw 50vh,
+    "header":           null 56px,
+    "gravatar":         80px,
+    "no":               0,
+    "auto":             auto,
+) !default;
+
+$spacings: (
+    "auto":     auto,
+    "0":        0,
+    "xxs":      5px,
+    "xs":       10px,
+    "s":        15px,
+    "m":        30px,
+    "l":        60px,
+    "full":     100%,
+) !default;
+
+$default-spacing: map-get($spacings, m) !default;
+
+$borders: (
+    "basic": (
+        width: 1px,
+        style: solid,
+    ),
+) !default;
+
+$z-range: -9, 9 !default;
+
+$object-fit-values: cover !default;
+$object-position-classes: true !default;
+
+$transitions: (
+    "short":    .25s,
+    "default": .3s,
+    "long":     1s,
+) !default;
+
+$t-icons: map-get($transitions, default) !default;
+
+// Breakpoints
+
 $bp: (
     "laptop":    1000px,
     "tablet":   800px,

@@ -1,10 +1,18 @@
+@use "sass:color";
+@use "sass:list";
+@use "sass:math";
+@use "sass:selector";
+@use "sass:string";
 @use "../functions/sides";
+@use "convenience" as mix;
 @use "node_modules/sass-color-helpers/stylesheets/_color-helpers.scss" as ch;
+
+$side: null;
 
 @mixin themeify($selectors...) {
     $group: ();
     @each $selector in $selectors {
-        $group: append($group, "& #{$selector}, #{selector-unify(&, $selector)}", "comma");
+        $group: list.append($group, "& #{$selector}, #{selector.unify(&, $selector)}", "comma");
     }
 
     @at-root #{$group} {
@@ -14,15 +22,15 @@
 
 @function darken-bg($primary, $secondary, $tertiary: null) {
     @if $tertiary {
-        @return mix(mix($primary, $tertiary, 85%), $secondary, 16%);
+        @return color.mix(color.mix($primary, $tertiary, 85%), $secondary, 16%);
     } @else {
-        @return mix($primary, $secondary, 16%);
+        @return color.mix($primary, $secondary, 16%);
     }
 }
 
 @mixin accessibility($name, $background-color, $text-color, $brand-color: null, $accessibility: "AA") {
-    $aa: to-upper-case($accessibility) == "AA";
-    $aaa: to-upper-case($accessibility) == "AAA";
+    $aa: string.to-upper-case($accessibility) == "AA";
+    $aaa: string.to-upper-case($accessibility) == "AAA";
 
     $ct-tx-bg: ch.ch-color-contrast($background-color, $text-color);
 
@@ -46,19 +54,19 @@
 @mixin theme($background-color, $text-color, $brand-color: null) {
     $light-text: null; $light-theme: null; $ld-tx-bg: null; $ld-br-tx: null; $ld-br-bg: null; $ct-tx-bg: null; $ct-br-tx: null; $ct-br-bg: null;
 
-    $light-theme: lightness($text-color) < lightness($background-color);
-    $ld-tx-bg: abs(lightness($text-color) - lightness($background-color)) / 100%;
+    $light-theme: color.lightness($text-color) < color.lightness($background-color);
+    $ld-tx-bg: math.abs(color.lightness($text-color) - color.lightness($background-color)) / 100%;
     @if $brand-color {
-        $ld-br-tx: abs(lightness($brand-color) - lightness($text-color)) / 100%;
-        $ld-br-bg: abs(lightness($brand-color) - lightness($background-color)) / 100%;
+        $ld-br-tx: math.abs(color.lightness($brand-color) - color.lightness($text-color)) / 100%;
+        $ld-br-bg: math.abs(color.lightness($brand-color) - color.lightness($background-color)) / 100%;
     }
 
     @if $light-theme {
-        $light-text: mix($text-color, $background-color, 58%);
+        $light-text: color.mix($text-color, $background-color, 58%);
         -webkit-font-smoothing: subpixel-antialiased;
         -moz-osx-font-smoothing: auto;
     } @else {
-        $light-text: mix($text-color, $background-color, 86%);
+        $light-text: color.mix($text-color, $background-color, 86%);
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
     }
@@ -73,23 +81,23 @@
 
     @include themeify("blockquote") {
         color: $light-text;
-        border-left-color: mix($light-text, $background-color, 25%);
+        border-left-color: color.mix($light-text, $background-color, 25%);
     }
 
     @include themeify("pre", "code") {
         $box-color: if($light-theme,
-            darken($background-color, $ld-tx-bg * 15%),
-            lighten($background-color, $ld-tx-bg * 15%));
-        $box-color: desaturate($box-color, saturation($box-color) / 2 );
-        color: mix($text-color, $box-color, 80%);
-        border-color: darken($box-color, $ld-tx-bg * if($light-theme, 25%, 10%));
+            color.adjust($background-color, $lightness: -($ld-tx-bg * 15%)),
+            color.adjust($background-color, $lightness: $ld-tx-bg * 15%));
+        $box-color: color.adjust($box-color, $saturation: -(color.saturation($box-color) / 2) );
+        color: color.mix($text-color, $box-color, 80%);
+        border-color: color.adjust($box-color, $lightness: -($ld-tx-bg * if($light-theme, 25%, 10%)));
         background-color: $box-color;
     }
 
     @include themeify('input[type="text"]', "textarea") {
         color: $text-color;
-        background: mix($text-color, $background-color, if($light-theme, 0%, 5%));
-        border-color: mix($text-color, $background-color, 25%);
+        background: color.mix($text-color, $background-color, if($light-theme, 0%, 5%));
+        border-color: color.mix($text-color, $background-color, 25%);
 
         &::placeholder {
             color: $light-text;
@@ -125,13 +133,13 @@
 
     @include themeify(".border-light") {
         @include sides.all {
-            border-#{$side}-color: mix($text-color, $background-color, 10%);
+            border-#{$side}-color: color.mix($text-color, $background-color, 10%);
         }
     }
 
     @include themeify(".border-x-light") {
         @include sides.all {
-            border-#{$side}-color: mix($text-color, $background-color, 5%);
+            border-#{$side}-color: color.mix($text-color, $background-color, 5%);
         }
     }
 
@@ -141,8 +149,8 @@
         @include themeify("a", ".theme-link") {
             color: $brand-color;
 
-            &:visited { color: lighten($brand-color, if($light-theme, $ld-br-bg, $ld-br-tx) * 35%); }
-            &:hover { color: darken($brand-color, if($light-theme, $ld-br-tx, $ld-br-bg) * 45%); }
+            &:visited { color: color.adjust($brand-color, $lightness: if($light-theme, $ld-br-bg, $ld-br-tx) * 35%); }
+            &:hover { color: color.adjust($brand-color, $lightness: -(if($light-theme, $ld-br-tx, $ld-br-bg) * 45%)); }
         }
     }
 
@@ -155,7 +163,7 @@
     @include themeify(".hover-shade") {
         transition-property: background-color;
 
-        @include hover {
+        @include mix.hover {
             background-color: $dark-background;
         }
     }
@@ -165,7 +173,7 @@
         transition-property: background-color;
 
         &[href] {
-            @include hover {
+            @include mix.hover {
                 background-color: darken-bg($text-color, $dark-background, $brand-color);
             }
         }
@@ -175,7 +183,7 @@
         //     transition-property: background-color;
         //
         //     &[href] {
-        //         @include hover {
+        //         @include mix.hover {
         //             background-color: darken-bg($text-color, $dark-background, $brand-color);
         //         }
         //     }
@@ -195,7 +203,7 @@
         }
 
         &:hover {
-            background-color: mix($button-color, $button-text, 80%);
+            background-color: color.mix($button-color, $button-text, 80%);
         }
     }
 
@@ -220,7 +228,7 @@
             background-color: $text-color;
 
             &:hover {
-                background-color: mix($text-color, $background-color, 80%);
+                background-color: color.mix($text-color, $background-color, 80%);
             }
         }
 

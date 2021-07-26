@@ -1,18 +1,19 @@
+@use "sass:list";
 @use "../functions/compare";
 
 @mixin wrapper($breakpoints, $min-margins: 0) {
-    @for $i from 1 through length($breakpoints) {
-        $bp: compare.bp(nth($breakpoints, $i));
-        $breakpoints: set-nth($breakpoints, $i, $bp);
+    @for $i from 1 through list.length($breakpoints) {
+        $bp: compare.bp(list.nth($breakpoints, $i));
+        $breakpoints: list.set-nth($breakpoints, $i, $bp);
     }
 
-    $bp-first: nth($breakpoints, 1);
-    $bp-last: nth($breakpoints, length($breakpoints));
+    $bp-first: list.nth($breakpoints, 1);
+    $bp-last: list.nth($breakpoints, list.length($breakpoints));
 
     @debug $bp-first;
     @debug $bp-last;
 
-    @if length($breakpoints) < 2 {
+    @if list.length($breakpoints) < 2 {
         @error "Invalid breakpoint list: must contain at least two values.";
     } @else if $bp-first < $bp-last {
         @error "Invalid breakpoint list: values should proceed from highest to lowest";
@@ -23,9 +24,9 @@
     margin-right: auto;
     max-width: $bp-first - ($min-margins * 2);
 
-    @for $i from 1 to length($breakpoints) {
-        $bp: nth($breakpoints, $i);
-        $bp-next: nth($breakpoints, $i + 1);
+    @for $i from 1 to list.length($breakpoints) {
+        $bp: list.nth($breakpoints, $i);
+        $bp-next: list.nth($breakpoints, $i + 1);
         $query: null;
         $invalid: null;
 

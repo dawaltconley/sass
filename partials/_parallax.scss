@@ -1,7 +1,8 @@
 // styling for container elements of parallax pages
+@use "mixins/parallax";
 
 body.parallax-body {
-    @include parallax-support {
+    @include parallax.support {
         -webkit-transform: translateZ(0);
         transform: translateZ(0);
     }
@@ -26,10 +27,10 @@ body.parallax-body {
         @extend .hw-accel;
     }
 
-    @include parallax-support {
+    @include parallax.support {
         height: 100vh;
-        -webkit-perspective: $perspective;
-        perspective: $perspective;
+        -webkit-perspective: parallax.$perspective;
+        perspective: parallax.$perspective;
         -webkit-perspective-origin: right;
         perspective-origin: right;
     }
@@ -43,7 +44,7 @@ body.parallax-body {
         @extend .relative;
     }
 
-    @include parallax-support {
+    @include parallax.support {
         -webkit-transform-style: preserve-3d;
         transform-style: preserve-3d;
 
@@ -56,9 +57,9 @@ body.parallax-body {
 }
 
 .parallax-bg-deep {
-    @include parallax(-1000px);
+    @include parallax.bg(-1000px);
 }
 
 .parallax-bg-shallow {
-    @include parallax(-500px);
+    @include parallax.bg(-500px);
 }

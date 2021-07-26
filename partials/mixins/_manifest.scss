@@ -1,8 +1,6 @@
-@import
-    "convenience",
-    "themes",
-    "wrappers",
-    "images",
-    "parallax",
-    "animations"
-;
+@forward "convenience";
+@forward "themes";
+@forward "wrappers";
+@forward "images";
+@forward "parallax";
+@forward "animations";
