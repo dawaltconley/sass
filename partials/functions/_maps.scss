@@ -1,41 +1,46 @@
-@function map-sort($map, $sort-by: "values", $order: $default-order) {
+@use "sass:list";
+@use "sass:map";
+@use "sass:math";
+@use "defaults";
+
+@function sort($map, $sort-by: "values", $order: defaults.$order) {
     $less:  ();
     $equal: ();
     $large: ();
 
-    $values: index("values" "value" "val" "v", $sort-by);
-    $keys: index("keys" "key" "k", $sort-by);
+    $values: list.index("values" "value" "val" "v", $sort-by);
+    $keys: list.index("keys" "key" "k", $sort-by);
     @if not ($values or $keys) {
         @error "Wrong value for $sort-by argument: was #{$sort-by}, should be 'keys' or 'values'.";
     }
 
-    @if length($map) > 1 {
-        $seed: nth($map, ceil(length($map) / 2));
-        $seed: nth($seed, if($values, 2, 1));
+    @if list.length($map) > 1 {
+        $seed: list.nth($map, math.ceil(list.length($map) / 2));
+        $seed: list.nth($seed, if($values, 2, 1));
 
         @each $k, $v in $map {
             $item: if($values, $v, $k);
 
             @if $item == $seed {
-                $equal: map-merge($equal, ($k:$v));
+                $equal: map.merge($equal, ($k:$v));
             } @else if _lt($item, $seed, $order) {
-                $less: map-merge($less, ($k:$v));
+                $less: map.merge($less, ($k:$v));
             } @else if not _lt($item, $seed, $order) {
-                $large: map-merge($large, ($k:$v));
+                $large: map.merge($large, ($k:$v));
             }
         }
 
-        @return map-merge(map-merge(map-sort($less, $sort-by, $order), $equal), map-sort($large, $sort-by, $order));
+        @return map.merge(map.merge(sort($less, $sort-by, $order), $equal), sort($large, $sort-by, $order));
     }
 
     @return $map;
 }
 
-@function map-sort-units($map, $sort-by: "values", $order: $default-unit-order) {
+@function sort-units($map, $sort-by: "values", $order: defaults.$unit-order) {
     $sorted: ();
 
-    $values: index("values" "value" "val" "v", $sort-by);
-    $keys: index("keys" "key" "k", $sort-by);
+    $values: list.index("values" "value" "val" "v", $sort-by);
+    $keys: list.index("keys" "key" "k", $sort-by);
     @if not ($values or $keys) {
         @error "Wrong value for $sort-by argument: was #{$sort-by}, should be 'keys' or 'values'.";
     }
@@ -44,12 +49,12 @@
         $matches: ();
         @each $k, $v in $map {
             $item: if($values, $v, $k);
-            @if unit($item) == $unit {
-                $matches: map-merge($matches, ($k:$v));
+            @if math.unit($item) == $unit {
+                $matches: map.merge($matches, ($k:$v));
             }
         }
-        @if length($matches) > 0 {
-            $sorted: append($sorted, $matches);
+        @if list.length($matches) > 0 {
+            $sorted: list.append($sorted, $matches);
         }
     }
 
@@ -59,17 +64,17 @@
 @function merge-all($list) {
     $return: ();
     @each $map in $list {
-        $return: map-merge($return, $map);
+        $return: map.merge($return, $map);
     }
     @return $return;
 }
 
-@function map-reverse($map) {
+@function reverse($map) {
     $return: ();
-    @for $i from length($map) through 1 {
-        $pair: nth($map, $i);
-        $pair: (nth($pair, 1): nth($pair, 2));
-        $return: map-merge($return, $pair);
+    @for $i from list.length($map) through 1 {
+        $pair: list.nth($map, $i);
+        $pair: (list.nth($pair, 1): list.nth($pair, 2));
+        $return: map.merge($return, $pair);
     }
     @return $return;
 }

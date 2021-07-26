@@ -1,3 +1,5 @@
+@use "functions/sides";
+
 /*
  * Basic
  */
@@ -104,7 +106,7 @@
 
 @each $name, $value in $spacings {
     .margin-#{$name} {
-        @include all-sides {
+        @include sides.all {
             margin-#{$side}: $value;
         }
     }
@@ -117,7 +119,7 @@
         margin-left: 0;
     }
 
-    @media screen and (max-width: map-get($bp, laptop)) {
+    @media screen and (max-width: map-get($bp, tablet)) {
         margin-left: $default-spacing;
 
         & & & { // stop indenting after 2 levels
@@ -133,7 +135,7 @@
 @each $name, $value in $spacings {
     @if $value != "auto" {
         .padding-#{$name} {
-            @include all-sides {
+            @include sides.all {
                 padding-#{$side}: $value;
             }
         }
@@ -146,7 +148,7 @@
 
 @each $name, $value in $spacings {
     .pos-#{$name} {
-        @include all-sides {
+        @include sides.all {
             #{$side}: $value;
         }
     }
@@ -199,7 +201,7 @@
 
 @each $name, $styles in $borders {
     .border-#{$name} {
-        @include all-sides {
+        @include sides.all {
             border-#{$side}-width: map-get($styles, width);
             border-#{$side}-style: map-get($styles, style);
             @if map-has-key($styles, color) {

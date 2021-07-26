@@ -1,28 +1,35 @@
+@use "sass:list";
+@use "sass:map";
+@use "sass:math";
+@use "sass:meta";
+@use "sass:string";
+@use "../variables" as var;
+
 @function _lt($a, $b, $order) {
-  @if type-of($a) == "number" and type-of($b) == "number" {
+  @if meta.type-of($a) == "number" and meta.type-of($b) == "number" {
     @return $a < $b;
   }
 
-  $a: to-lower-case($a + unquote(""));
-  $b: to-lower-case($b + unquote(""));
+  $a: string.to-lower-case($a + string.unquote(""));
+  $b: string.to-lower-case($b + string.unquote(""));
 
-  @for $i from 1 through min(str-length($a), str-length($b)) {
-    $char-a: str-slice($a, $i, $i);
-    $char-b: str-slice($b, $i, $i);
+  @for $i from 1 through math.min(string.length($a), string.length($b)) {
+    $char-a: string.slice($a, $i, $i);
+    $char-b: string.slice($b, $i, $i);
 
-    @if $char-a and $char-b and index($order, $char-a) != index($order, $char-b) {
-      @return index($order, $char-a) < index($order, $char-b);
+    @if $char-a and $char-b and list.index($order, $char-a) != list.index($order, $char-b) {
+      @return list.index($order, $char-a) < list.index($order, $char-b);
     }
   }
 
-  @return str-length($a) < str-length($b);
+  @return string.length($a) < string.length($b);
 }
 
-@function check-bp($breakpoint, $bp-list: $bp) {
-    $type: type-of($breakpoint);
+@function bp($breakpoint, $bp-list: var.$bp) {
+    $type: meta.type-of($breakpoint);
     @if $type == string {
-        @if map-has-key($bp-list, $breakpoint) {
-            $breakpoint: map-get($bp-list, $breakpoint);
+        @if map.has-key($bp-list, $breakpoint) {
+            $breakpoint: map.get($bp-list, $breakpoint);
         } @else {
             @error "#{$breakpoint} is not a known breakpoint."
         }

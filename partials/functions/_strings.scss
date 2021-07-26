@@ -1,16 +1,18 @@
+@use "sass:list";
+@use "sass:string";
 @function file-suffix($file-name, $suffix, $extension: ".") {
     $return: ();
-    $separator: list-separator($file-name);
+    $separator: list.separator($file-name);
     @each $name in $file-name {
         $ext-index: null;
         $i: 1;
-        @while ($i <= length($extension)) and not($ext-index) {
-            $ext: nth($extension, $i);
-            @if str-slice($ext, 1, 1) != "." { $ext: ".#{$ext}"; }
-            $ext-index: str-index(to-lower-case($name), to-lower-case($ext));
+        @while ($i <= list.length($extension)) and not($ext-index) {
+            $ext: list.nth($extension, $i);
+            @if string.slice($ext, 1, 1) != "." { $ext: ".#{$ext}"; }
+            $ext-index: string.index(string.to-lower-case($name), string.to-lower-case($ext));
             $i: $i + 1;
         }
-        $return: append($return, if($ext-index, str-insert($name, $suffix, $ext-index), $name), $separator);
+        $return: list.append($return, if($ext-index, string.insert($name, $suffix, $ext-index), $name), $separator);
     }
     @return $return;
 }

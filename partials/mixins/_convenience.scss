@@ -1,18 +1,23 @@
-@mixin mq($breakpoints: $bp, $queries: (lt: max, gt: min)) {
+@use '../functions/maps';
+@use '../functions/selectors';
+@use '../functions/compare';
+@use "../variables" as var;
+
+@mixin mq($breakpoints: var.$bp, $queries: (lt: max, gt: min)) {
     $bp-map: ();
     @each $name, $value in $breakpoints {
-        $bp-map: map-merge($bp-map, ($name: if($value, $value, check-bp($name))));
+        $bp-map: map-merge($bp-map, ($name: if($value, $value, compare.bp($name))));
     }
     @each $prefix, $query in $queries {
-        $sorted-bp: map-sort-units($bp-map, $order: px em);
+        $sorted-bp: maps.sort-units($bp-map, $order: px em);
         @for $i from 1 through length($sorted-bp) {
-            $unit-set: map-sort(nth($sorted-bp, $i));
+            $unit-set: maps.sort(nth($sorted-bp, $i));
             @if $query == "max" {
-                $unit-set: map-reverse($unit-set);
+                $unit-set: maps.reverse($unit-set);
             }
             $sorted-bp: set-nth($sorted-bp, $i, $unit-set);
         }
-        $sorted-bp: merge-all($sorted-bp);
+        $sorted-bp: maps.merge-all($sorted-bp);
 
         $last-bp: null;
         @each $name, $value in $sorted-bp {
@@ -109,10 +114,10 @@
                 $breakpoint: nth(map-keys($breakpoint), 1);
             }
 
-            @if type-of($breakpoint) == string and map-has-key($bp, $breakpoint) {
-                $breakpoint: map-get($bp, $breakpoint);
+            @if type-of($breakpoint) == string and map-has-key(var.$bp, $breakpoint) {
+                $breakpoint: map-get(var.$bp, $breakpoint);
             } @else if type-of($breakpoint) == string {
-                @error 'responsive-columns mixin: breakpoint name #{$breakpoint} is not a valid breakpoint name; must match a key in the global $bp map.'
+                @error 'responsive-columns mixin: breakpoint name #{$breakpoint} is not a valid breakpoint name; must match a key in the $bp map.'
             } @else if type-of($breakpoint) != number {
                 @error 'responsive-columns mixin: breakpoint must be either a number or a string identifier; encountered #{$breakpoint} which is a #{type-of($breakpoint)}'
             }
@@ -149,16 +154,16 @@
 // with class "hover" (either same element or nearest parent) is hovered
 @mixin hover($hover-class: "hover") {
     @at-root &.#{$hover-class}:hover,
-    #{last-selector(&, ".#{$hover-class}:hover >", ":not(.#{$hover-class})")},
-    #{last-selector(&, ".#{$hover-class}:hover *:not(.#{$hover-class})", ":not(.#{$hover-class})")} {
+    #{selectors.last(&, ".#{$hover-class}:hover >", ":not(.#{$hover-class})")},
+    #{selectors.last(&, ".#{$hover-class}:hover *:not(.#{$hover-class})", ":not(.#{$hover-class})")} {
         @content;
     }
 }
 
 @mixin no-hover($hover-class: "hover") {
     @at-root &.#{$hover-class}:not(:hover),
-    #{last-selector(&, ".#{$hover-class}:not(:hover) >", ":not(.#{$hover-class})")},
-    #{last-selector(&, ".#{$hover-class}:not(:hover) *:not(.#{$hover-class})", ":not(.#{$hover-class})")} {
+    #{selectors.last(&, ".#{$hover-class}:not(:hover) >", ":not(.#{$hover-class})")},
+    #{selectors.last(&, ".#{$hover-class}:not(:hover) *:not(.#{$hover-class})", ":not(.#{$hover-class})")} {
         @content;
     }
 }
@@ -166,16 +171,16 @@
 // same idea with a target class
 @mixin target($target-class: "target") {
     @at-root &.#{$target-class}:target,
-    #{last-selector(&, ".#{$target-class}:target >", ":not(.#{$target-class})")},
-    #{last-selector(&, ".#{$target-class}:target *:not(.#{$target-class})", ":not(.#{$target-class})")} {
+    #{selectors.last(&, ".#{$target-class}:target >", ":not(.#{$target-class})")},
+    #{selectors.last(&, ".#{$target-class}:target *:not(.#{$target-class})", ":not(.#{$target-class})")} {
         @content;
     }
 }
 
 @mixin no-target($target-class: "target") {
     @at-root &.#{$target-class}:not(:target),
-    #{last-selector(&, ".#{$target-class}:not(:target) >", ":not(#{$target-class})")},
-    #{last-selector(&, ".#{$target-class}:not(:target) *:not(.#{$target-class})", ":not(.#{$target-class})")} {
+    #{selectors.last(&, ".#{$target-class}:not(:target) >", ":not(#{$target-class})")},
+    #{selectors.last(&, ".#{$target-class}:not(:target) *:not(.#{$target-class})", ":not(.#{$target-class})")} {
         @content;
     }
 }

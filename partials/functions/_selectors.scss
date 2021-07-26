@@ -1,13 +1,17 @@
-@function last-selector($selectors, $prepend: null, $append: null) {
-    @for $i from 1 through length($selectors) {
-        $s-group: nth($selectors, $i);
+@use "sass:list";
+@use "sass:selector";
+@use "lists";
+
+@function last($selectors, $prepend: null, $append: null) {
+    @for $i from 1 through list.length($selectors) {
+        $s-group: list.nth($selectors, $i);
         @if $prepend {
-            $s-group: insert-nth($s-group, length($s-group), $prepend);
+            $s-group: lists.insert-nth($s-group, list.length($s-group), $prepend);
         }
         @if $append {
-            $s-group: selector-append($s-group, $append);
+            $s-group: selector.append($s-group, $append);
         }
-        $selectors: set-nth($selectors, $i, $s-group);
+        $selectors: list.set-nth($selectors, $i, $s-group);
     }
 
     @return $selectors;

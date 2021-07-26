@@ -13,7 +13,7 @@
 }
 
 .content-wrapper {
-    @include wrapper((large, laptop, mobile));
+    @include wrapper((laptop, tablet, mobile));
 }
 
 .text-wrapper {
