@@ -168,28 +168,6 @@ $side: null;
         }
     }
 
-    @include themeify(".hover-shade-dark") {
-        background-color: $dark-background;
-        transition-property: background-color;
-
-        &[href] {
-            @include mix.hover {
-                background-color: darken-bg($text-color, $dark-background, $brand-color);
-            }
-        }
-
-        // @include mq("header", (lt: max)) {
-        //     background-color: $dark-background;
-        //     transition-property: background-color;
-        //
-        //     &[href] {
-        //         @include mix.hover {
-        //             background-color: darken-bg($text-color, $dark-background, $brand-color);
-        //         }
-        //     }
-        // }
-    }
-
     // Buttons
 
     $button-color: if($brand-color, $brand-color, $text-color);

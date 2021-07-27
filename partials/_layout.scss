@@ -88,15 +88,6 @@
     max-height: none;
 }
 
-#header.header-size, #header.header-height {
-    & + .parallax-group {
-        $hh: map.get($sizes, header);
-        $hh: list.nth($hh, list.length($hh));
-        margin-top: -$hh;
-        padding-top: $hh;
-    }
-}
-
 .slide-button-width {
     width: 20%;
     min-width: 80px;
