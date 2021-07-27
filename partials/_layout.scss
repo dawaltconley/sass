@@ -1,6 +1,7 @@
 @use "sass:list";
 @use "sass:map";
 @use "functions/sides";
+@use "mixins/layout";
 
 /*
  * Basic
@@ -46,38 +47,7 @@
  */
 
 @each $name, $size in $sizes {
-    $width: null;
-    $height: null;
-
-    @if list.length($size) == 1 {
-        $width: $size;
-        $height: $size;
-    } @else if list.length($size) == 2 {
-        $width: list.nth($size, 1);
-        $height: list.nth($size, 2);
-    } @else {
-        @error "Wrong number of values in #{$name} size.";
-    }
-
-    .#{$name} {
-        &-width {
-            width: $width;
-            &-min { min-width: $width; }
-            &-max { max-width: $width; }
-        }
-        &-height {
-            height: $height;
-            &-min { min-height: $height; }
-            &-max { max-height: $height; }
-        }
-        @if $width and $height {
-            &-size {
-                @extend .#{$name}-width, .#{$name}-height;
-                &-min { @extend .#{$name}-width-min, .#{$name}-height-min; }
-                &-max { @extend .#{$name}-width-max, .#{$name}-height-max; }
-            }
-        }
-    }
+    @include layout.size($name, $size);
 }
 
 .max-width-none {
@@ -98,11 +68,7 @@
  */
 
 @each $name, $value in $spacings {
-    .margin-#{$name} {
-        @include sides.all {
-            margin-#{$side}: $value;
-        }
-    }
+    @include layout.margins($name, $value);
 }
 
 .indented-comment {
@@ -126,13 +92,7 @@
  */
 
 @each $name, $value in $spacings {
-    @if $value != "auto" {
-        .padding-#{$name} {
-            @include sides.all {
-                padding-#{$side}: $value;
-            }
-        }
-    }
+    @include layout.padding($name, $value);
 }
 
 /*
@@ -140,11 +100,7 @@
  */
 
 @each $name, $value in $spacings {
-    .pos-#{$name} {
-        @include sides.all {
-            #{$side}: $value;
-        }
-    }
+    @include layout.positioning($name, $value);
 }
 
 .abs-center {
@@ -193,26 +149,8 @@
  */
 
 @each $name, $styles in $borders {
-    .border-#{$name} {
-        @include sides.all {
-            border-#{$side}-width: map.get($styles, width);
-            border-#{$side}-style: map.get($styles, style);
-            @if map.has-key($styles, color) {
-                border-#{$side}-color: map.get($styles, color) !important;
-            }
-        }
-    }
-
-    .h-line-#{$name} {
-        @extend %h-line;
-        &::before, &::after {
-            border-top-width: map.get($styles, width);
-            border-top-style: map.get($styles, style);
-            @if map.has-key($styles, color) {
-                border-top-color: map.get($styles, color) !important;
-            }
-        }
-    }
+    @include border($name, $styles);
+    @include h-line($name, $styles);
 }
 
 .border-between > * {
@@ -240,22 +178,4 @@
 
 .ellipse {
     border-radius: 50%;
-}
-
-%h-line {
-    @extend .flex-row, .flex-align-center;
-
-    &::before, &::after {
-        content: "";
-        flex: 1 1 auto;
-        border-top-color: inherit;
-    }
-
-    &::before {
-        margin-right: .5em;
-    }
-
-    &::after {
-        margin-left: .5em;
-    }
 }

@@ -1,5 +1,116 @@
 @use "sass:list";
+@use "sass:map";
 @use "../functions/compare";
+@use "../functions/sides";
+@use "../flexbox";
+
+@mixin size($name, $size) {
+    $width: null;
+    $height: null;
+
+    @if list.length($size) == 1 {
+        $width: $size;
+        $height: $size;
+    } @else if list.length($size) == 2 {
+        $width: list.nth($size, 1);
+        $height: list.nth($size, 2);
+    } @else {
+        @error "Wrong number of values in #{$name} size.";
+    }
+
+    .#{$name} {
+        &-width {
+            width: $width;
+            &-min { min-width: $width; }
+            &-max { max-width: $width; }
+        }
+        &-height {
+            height: $height;
+            &-min { min-height: $height; }
+            &-max { max-height: $height; }
+        }
+        @if $width and $height {
+            &-size {
+                @extend .#{$name}-width, .#{$name}-height;
+                &-min { @extend .#{$name}-width-min, .#{$name}-height-min; }
+                &-max { @extend .#{$name}-width-max, .#{$name}-height-max; }
+            }
+        }
+    }
+}
+
+@mixin margins($name, $value) {
+    $side: null;
+    .margin-#{$name} {
+        @include sides.all {
+            margin-#{$side}: $value;
+        }
+    }
+}
+
+@mixin padding($name, $value) {
+    $side: null;
+    @if $value != "auto" {
+        .padding-#{$name} {
+            @include sides.all {
+                padding-#{$side}: $value;
+            }
+        }
+    }
+}
+
+@mixin positioning($name, $value) {
+    $side: null;
+    .pos-#{$name} {
+        @include sides.all {
+            #{$side}: $value;
+        }
+    }
+}
+
+@mixin border($name, $styles) {
+    $side: null;
+    .border-#{$name} {
+        @include sides.all {
+            border-#{$side}-width: map.get($styles, width);
+            border-#{$side}-style: map.get($styles, style);
+            @if map.has-key($styles, color) {
+                border-#{$side}-color: map.get($styles, color) !important;
+            }
+        }
+    }
+}
+
+%h-line {
+    @extend .flex-row, .flex-align-center;
+
+    &::before, &::after {
+        content: "";
+        flex: 1 1 auto;
+        border-top-color: inherit;
+    }
+
+    &::before {
+        margin-right: .5em;
+    }
+
+    &::after {
+        margin-left: .5em;
+    }
+}
+
+@mixin h-line($name, $styles) {
+    .h-line-#{$name} {
+        @extend %h-line;
+        &::before, &::after {
+            border-top-width: map.get($styles, width);
+            border-top-style: map.get($styles, style);
+            @if map.has-key($styles, color) {
+                border-top-color: map.get($styles, color) !important;
+            }
+        }
+    }
+}
 
 @mixin wrapper($breakpoints, $min-margins: 0) {
     @for $i from 1 through list.length($breakpoints) {
