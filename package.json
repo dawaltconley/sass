@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "description": "Reuseable & customizeable sass library.",
   "main": "_index.scss",
+  "files": [
+      "partials/**/*"
+  ],
   "scripts": {
     "build": "npx gulp build ; npx @11ty/eleventy",
     "serve": "npx gulp serve & npx @11ty/eleventy --serve",
