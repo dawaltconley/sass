@@ -4,7 +4,7 @@
   "description": "Reuseable & customizeable sass library.",
   "main": "_index.scss",
   "files": [
-      "partials/**/*"
+    "partials/**/*"
   ],
   "scripts": {
     "build": "npx gulp build ; npx @11ty/eleventy",
@@ -24,5 +24,13 @@
     "normalize.css": "^8.0.1",
     "object-fit-images": "^3.2.4",
     "sass": "^1.36.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dawaltconley/sass.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dawaltconley/sass/issues"
+  },
+  "homepage": "https://github.com/dawaltconley/sass#readme"
 }
