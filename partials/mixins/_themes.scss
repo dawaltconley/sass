@@ -7,8 +7,6 @@
 @use "convenience" as mix;
 @use "node_modules/sass-color-helpers/stylesheets/_color-helpers.scss" as ch;
 
-$side: null;
-
 @mixin themeify($selectors...) {
     $group: ();
     @each $selector in $selectors {
@@ -132,13 +130,13 @@ $side: null;
     // Borders
 
     @include themeify(".border-light") {
-        @include sides.all {
+        @include sides.all using ($side) {
             border-#{$side}-color: color.mix($text-color, $background-color, 10%);
         }
     }
 
     @include themeify(".border-x-light") {
-        @include sides.all {
+        @include sides.all using ($side) {
             border-#{$side}-color: color.mix($text-color, $background-color, 5%);
         }
     }

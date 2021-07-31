@@ -40,19 +40,17 @@
 }
 
 @mixin margins($name, $value) {
-    $side: null;
     .margin-#{$name} {
-        @include sides.all {
+        @include sides.all using ($side) {
             margin-#{$side}: $value;
         }
     }
 }
 
 @mixin padding($name, $value) {
-    $side: null;
     @if $value != "auto" {
         .padding-#{$name} {
-            @include sides.all {
+            @include sides.all using ($side) {
                 padding-#{$side}: $value;
             }
         }
@@ -60,18 +58,16 @@
 }
 
 @mixin positioning($name, $value) {
-    $side: null;
     .pos-#{$name} {
-        @include sides.all {
+        @include sides.all using ($side) {
             #{$side}: $value;
         }
     }
 }
 
 @mixin border($name, $styles) {
-    $side: null;
     .border-#{$name} {
-        @include sides.all {
+        @include sides.all using ($side) {
             border-#{$side}-width: map.get($styles, width);
             border-#{$side}-style: map.get($styles, style);
             @if map.has-key($styles, color) {

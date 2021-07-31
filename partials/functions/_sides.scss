@@ -1,5 +1,6 @@
 @use "sass:string";
-@use "defaults";
+
+$sides: "top", "bottom", "left", "right" !default;
 
 @function get-orientation($side) {
     @if $side == "top" or $side == "bottom" {
@@ -12,11 +13,10 @@
 }
 
 @mixin all {
-    @each $name in defaults.$sides {
-        $side: $name !global;
+    @each $side in $sides {
         $o: string.slice(get-orientation($side), 1, 1);
         &, &-#{$o}, &-#{string.slice($side, 1, 1)} {
-            @content;
+            @content($side);
         }
     }
 }

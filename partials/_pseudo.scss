@@ -1,5 +1,7 @@
 @use "sass:map";
 @use "sass:string";
+@use "functions/sides";
+
 /*
  * Hover
  */
@@ -96,7 +98,7 @@
 }
 
 .hover-shadow {
-    @each $side in $sides {
+    @each $side in sides.$sides {
         &-#{string.slice($side, 1, 1)} {
             @extend %hover-shadow;
 

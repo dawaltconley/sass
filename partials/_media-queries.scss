@@ -87,7 +87,7 @@
 }
 
 .margin-auto {
-    @include sides.all {
+    @include sides.all using ($side) {
         @include mq {
             margin-#{$side}: auto;
         }
@@ -95,7 +95,7 @@
 }
 
 .margin-0 {
-    @include sides.all {
+    @include sides.all using ($side) {
         @include mq {
             margin-#{$side}: 0;
         }
@@ -103,7 +103,7 @@
 }
 
 .padding-0 {
-    @include sides.all {
+    @include sides.all using ($side) {
         @include mq {
             padding-#{$side}: 0;
         }
@@ -111,7 +111,7 @@
 }
 
 .border-0 {
-    @include sides.all {
+    @include sides.all using ($side) {
         @include mq {
             border-#{$side}-width: 0;
         }
