@@ -77,7 +77,7 @@
     @return $return;
 }
 
-@function join-str($list, $str) {
+@function join-str($list, $str: "") {
     $return: "";
     @for $i from 1 to list.length($list) {
         $return: $return + list.nth($list, $i) + $str;
