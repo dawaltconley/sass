@@ -65,6 +65,20 @@
     }
 }
 
+@mixin z-range($minZ: 0, $maxZ: 9) {
+    $min: if(list.length($minZ) > 1, list.nth($minZ, 1), $minZ);
+    $max: if(list.length($minZ) > 1, list.nth($minZ, 2), $maxZ);
+    @for $i from $min through $max {
+        $class-name: if($i < 0, z-neg-#{($i * -1)}, z-#{$i});
+        @debug 'making z: #{$class-name}';
+
+        .#{$class-name} {
+            @extend .relative;
+            z-index: $i;
+        }
+    }
+}
+
 @mixin border($name, $styles) {
     .border-#{$name} {
         @include sides.all using ($side) {

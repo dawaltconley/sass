@@ -1,7 +1,12 @@
 @use "sass:list";
-@use "sass:map";
-@use "functions/sides";
-@use "mixins/layout";
+@use 'variables' as v;
+@use 'mixins/convenience' as mix;
+@use 'mixins/layout';
+
+$sizes: v.$sizes !default;
+$spacings: v.$spacings !default;
+$borders: v.$borders !default;
+$z-range: v.$z-range !default;
 
 /*
  * Basic
@@ -58,33 +63,12 @@
     max-height: none;
 }
 
-.slide-button-width {
-    width: 20%;
-    min-width: 80px;
-}
-
 /*
  * Margins
  */
 
 @each $name, $value in $spacings {
     @include layout.margins($name, $value);
-}
-
-.indented-comment {
-    margin-left: $default-spacing * 2;
-
-    & & & & { // stop indenting after 3 levels
-        margin-left: 0;
-    }
-
-    @media screen and (max-width: map.get($bp, tablet)) {
-        margin-left: $default-spacing;
-
-        & & & { // stop indenting after 2 levels
-            margin-left: 0;
-        }
-    }
 }
 
 /*
@@ -106,33 +90,26 @@
 .abs-center {
     @extend .absolute;
     top: 50%; left: 50%;
-    @include transform(translate(-50%, -50%));
+    @include mix.transform(translate(-50%, -50%));
 }
 
 .abs-center-h {
     @extend .absolute;
     left: 50%;
-    @include transform(translateX(-50%));
+    @include mix.transform(translateX(-50%));
 }
 
 .abs-center-v {
     @extend .absolute;
     top: 50%;
-    @include transform(translateY(-50%));
+    @include mix.transform(translateY(-50%));
 }
 
 /*
  * Z-Axis
  */
 
-@for $i from list.nth($z-range, 1) through list.nth($z-range, 2) {
-    $class-name: if($i < 0, z-neg-#{($i * -1)}, z-#{$i});
-
-    .#{$class-name} {
-        @extend .relative;
-        z-index: $i;
-    }
-}
+@include layout.z-range(list.nth($z-range, 1), list.nth($z-range, 2));
 
 .front {
     @extend .relative;
@@ -149,8 +126,8 @@
  */
 
 @each $name, $styles in $borders {
-    @include border($name, $styles);
-    @include h-line($name, $styles);
+    @include layout.border($name, $styles);
+    @include layout.h-line($name, $styles);
 }
 
 .border-between > * {
@@ -170,12 +147,4 @@
     &:nth-child(n + 2) {
         border-top-width: 0;
     }
-}
-
-.border-smooth {
-    border-radius: 10px;
-}
-
-.ellipse {
-    border-radius: 50%;
 }
