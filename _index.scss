@@ -28,21 +28,6 @@ $perspective:           2000px !default;
 
 // Generated Classes
 
-$themes: (
-    "light": (
-        text-color: #171717,
-        background-color: white,
-        brand-color: royalblue,
-    ),
-    "dark": (
-        text-color: white,
-        background-color: #171717,
-        brand-color: royalblue,
-    ),
-) !default;
-
-$theme-depth: 1 !default; // controls the depth (in a series nested themes) at which an element still inherits the styles of its immediate ancestor theme. stylesheets get much larger and more complex as this number increases, so it should be set as low as possible.
-
 $font-sizes: (
     "base": 1.25rem,
     "icon": 1.5rem,
@@ -121,7 +106,6 @@ $angles: ("top": 0deg, "bottom": 180deg, "left": 90deg, "right": 270deg);
 
 @import
     "partials/base",
-    "partials/themes",
     "partials/display",
     "partials/layout",
     "partials/containers",
