@@ -1,8 +1,10 @@
+@use "variables" as v;
+
 /*
  * Transitions
  */
 
-@each $name, $transition in $transitions {
+@each $name, $transition in v.$transitions {
     .t-#{$name} {
         -webkit-transition-duration: $transition;
         transition-duration: $transition;

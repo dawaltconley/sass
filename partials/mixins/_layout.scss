@@ -3,7 +3,9 @@
 @use "../functions/compare";
 @use "../functions/sides";
 @use "../functions/lists";
-@use "../flexbox";
+
+// extend from
+@use "../placeholders";
 
 $separator: '-' !default;
 
@@ -73,10 +75,8 @@ $separator: '-' !default;
     $max: if(list.length($minZ) > 1, list.nth($minZ, 2), $maxZ);
     @for $i from $min through $max {
         $class-name: if($i < 0, z-neg-#{($i * -1)}, z-#{$i});
-        @debug 'making z: #{$class-name}';
-
         .#{$class-name} {
-            @extend .relative;
+            @extend %relative;
             z-index: $i;
         }
     }
@@ -95,7 +95,9 @@ $separator: '-' !default;
 }
 
 %h-line {
-    @extend .flex-row, .flex-align-center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 
     &::before, &::after {
         content: "";
@@ -134,16 +136,12 @@ $separator: '-' !default;
     $bp-first: list.nth($breakpoints, 1);
     $bp-last: list.nth($breakpoints, list.length($breakpoints));
 
-    @debug $bp-first;
-    @debug $bp-last;
-
     @if list.length($breakpoints) < 2 {
         @error "Invalid breakpoint list: must contain at least two values.";
     } @else if $bp-first < $bp-last {
         @error "Invalid breakpoint list: values should proceed from highest to lowest";
     }
 
-    @extend .clearfix;
     margin-left: auto;
     margin-right: auto;
     max-width: $bp-first - ($min-margins * 2);

@@ -1,3 +1,9 @@
+@use "variables" as v;
+@use "mixins/convenience" as mix;
+
+// extending from
+@use "layout";
+
 /*
  * Containers
  */
@@ -15,18 +21,21 @@
     overflow-y: auto;
 }
 
-%fill {
+%fill { // this should go before pos and size classes
     top: 0; left: 0;
+    // right: 0; bottom: 0;
     width: 100%;
     height: 100%;
 }
 
 .fill-window {
-    @extend .fixed, .pos-0, .screen-size;
+    @extend .fixed; // add some other extends for alt names
+    @extend %fill;
 }
 
 .fill-parent {
-    @extend .absolute, .pos-0, .full-size;
+    @extend .absolute;
+    @extend %fill;
 }
 
 .expand-children {
@@ -46,12 +55,12 @@
 }
 
 .aspect-16-9 {
-    @include fixed-ratio(16, 9);
+    @include mix.fixed-ratio(16, 9);
 }
 
 .contains-3d {
-    -webkit-perspective: $perspective;
-    perspective: $perspective;
+    -webkit-perspective: v.$perspective;
+    perspective: v.$perspective;
 
     &-deep * {
         @extend .contains-3d;

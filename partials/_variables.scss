@@ -6,8 +6,6 @@ $baseurl:               "" !default;
 
 $native-scroll:         false !default;
 
-$fa-icons:              () !default;
-
 $device-dp:             () !default;
 
 $device-dppx:           () !default;
@@ -74,8 +72,6 @@ $transitions: (
     "long":     1s,
 ) !default;
 
-$t-icons: map.get($transitions, default) !default;
-
 // Breakpoints
 
 $bp: (
@@ -83,3 +79,7 @@ $bp: (
     "tablet":   800px,
     "mobile":   600px,
 ) !default;
+
+// Functional
+
+$angles: ("top": 0deg, "bottom": 180deg, "left": 90deg, "right": 270deg);

@@ -8,6 +8,9 @@
 @use '../functions/compare';
 @use "../variables" as var;
 
+// extending from
+@use "../placeholders";
+
 @mixin mq($breakpoints: var.$bp, $queries: (lt: max, gt: min)) {
     $bp-map: ();
     @each $name, $value in $breakpoints {
@@ -100,10 +103,10 @@
 
 @mixin inline-columns($breakpoints, $spacing: null) {
     $bp-col-map: ();
-    @extend .font-0;
+    @extend %font-0;
 
     > * {
-        @extend .inline-block, .full-width;
+        @extend %inline-block, %full-width;
         margin-bottom: $spacing;
 
         @for $i from 1 through list.length($breakpoints) {

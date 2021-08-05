@@ -1,7 +1,8 @@
+@use 'mixins/convenience' as mix;
 @use 'mixins/images';
 
 .breakpoint-media-queries {
-    @include mq { /* mq */ }
+    @include mix.mq { /* mq */ }
 }
 
 .responsive-image-media-queries {

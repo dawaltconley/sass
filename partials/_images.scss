@@ -1,5 +1,9 @@
 @use "sass:string";
 @use "mixins/images";
+@use "variables" as v;
+
+$object-fit-values: v.$object-fit-values !default;
+$object-position-classes: v.$object-position-classes !default;
 
 /*
  * Images
