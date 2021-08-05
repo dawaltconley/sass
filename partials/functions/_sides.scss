@@ -12,10 +12,10 @@ $sides: "top", "bottom", "left", "right" !default;
     }
 }
 
-@mixin all {
+@mixin all($sep: '-') {
     @each $side in $sides {
         $o: string.slice(get-orientation($side), 1, 1);
-        &, &-#{$o}, &-#{string.slice($side, 1, 1)} {
+        &, &#{$sep + $o}, &#{$sep + string.slice($side, 1, 1)} {
             @content($side);
         }
     }
