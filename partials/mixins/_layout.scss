@@ -2,7 +2,10 @@
 @use "sass:map";
 @use "../functions/compare";
 @use "../functions/sides";
+@use "../functions/lists";
 @use "../flexbox";
+
+$separator: '-' !default;
 
 @mixin size($name, $size) {
     $width: null;
@@ -39,7 +42,7 @@
     }
 }
 
-@mixin margins($name, $value) {
+@mixin margins($name, $value, $s: $separator) {
     .margin-#{$name} {
         @include sides.all using ($side) {
             margin-#{$side}: $value;
