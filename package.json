@@ -2,20 +2,20 @@
   "name": "@dawaltconley/sass",
   "version": "0.2.0",
   "description": "Reuseable & customizeable sass library.",
-  "main": "_index.scss",
+  "main": "_config.scss",
   "files": [
-    "partials/**/*"
+    "functions/**/*",
+    "mixins/**/*",
+    "styles/**/*"
   ],
   "scripts": {
     "build": "npx gulp build ; npx @11ty/eleventy",
     "serve": "npx gulp serve & npx @11ty/eleventy --serve",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run build",
+    "prepublishOnly": "npm run test"
   },
   "author": "Dylan Awalt-Conley",
   "license": "ISC",
-  "dependencies": {
-    "sass-color-helpers": "^2.1.1"
-  },
   "devDependencies": {
     "@11ty/eleventy": "^0.12.1",
     "eslint": "^7.31.0",
