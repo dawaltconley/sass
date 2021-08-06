@@ -1,0 +1,26 @@
+@use 'partials/variables' as v;
+@use 'sass-parallax/parallax' with ($perspective: v.$perspective, $IE: true);
+
+body {
+    @include parallax.body();
+}
+
+.parallax-page {
+    @include parallax.page();
+}
+
+.parallax-group {
+    @include parallax.group();
+}
+
+.parallax-bg-deep {
+    @include parallax.bg(-2000px);
+}
+
+.parallax-bg-middle {
+    @include parallax.bg(-1000px);
+}
+
+.parallax-bg-shallow {
+    @include parallax.bg(-500px);
+}
