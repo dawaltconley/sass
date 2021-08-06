@@ -36,7 +36,7 @@
 }
 
 .button, .button-o, {
-    @extend %vertical-rhythm, %inline-block, ksubtle-icon;
+    @extend %vertical-rhythm, %inline-block, .subtle-icon;
     padding: .5em 1em;
     text-align: center;
     text-shadow: none;
