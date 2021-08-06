@@ -1,4 +1,4 @@
-@use 'partials/mixins/images';
+@use 'mixins/images';
 
 .splash-bg {
     @include images.background(url(/assets/gulp-backgrounds/lower-pool.jpg));

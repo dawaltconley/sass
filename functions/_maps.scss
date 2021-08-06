@@ -1,7 +1,7 @@
 @use "sass:list";
 @use "sass:map";
 @use "sass:math";
-@use "../variables" as v;
+@use "config" as v;
 
 $order: v.$order !default;
 $unit-order: v.$unit-order !default;

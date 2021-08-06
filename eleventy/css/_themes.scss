@@ -1,0 +1,6 @@
+@use 'sass-themes/build';
+@use 'sass-themes/styles/all';
+
+.subtle-icon {
+    @extend .subtle-link;
+}

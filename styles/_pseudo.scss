@@ -1,7 +1,7 @@
 @use "sass:map";
 @use "sass:string";
 @use "functions/sides";
-@use "variables" as v;
+@use "config" as v;
 @use "mixins/convenience" as mix;
 
 // extending from

@@ -1,11 +1,11 @@
 @use "sass:list";
 @use "sass:map";
 @use "sass:string";
-@use '../functions/strings';
-@use '../variables' as v;
+@use 'functions/strings';
+@use 'config' as v;
 
 // extending from
-@use "../placeholders";
+@use "styles/placeholders";
 
 $device-dp:     v.$device-dp !default;
 $device-dppx:   v.$device-dppx !default;

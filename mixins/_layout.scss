@@ -1,11 +1,11 @@
 @use "sass:list";
 @use "sass:map";
-@use "../functions/compare";
-@use "../functions/sides";
-@use "../functions/lists";
+@use "functions/compare";
+@use "functions/sides";
+@use "functions/lists";
 
 // extend from
-@use "../placeholders";
+@use "styles/placeholders";
 
 $separator: '-' !default;
 
