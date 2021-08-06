@@ -1,9 +1,12 @@
 @use "sass:list";
 @use "sass:map";
 @use "sass:math";
-@use "defaults";
+@use "../variables" as v;
 
-@function sort($map, $sort-by: "values", $order: defaults.$order) {
+$order: v.$order !default;
+$unit-order: v.$unit-order !default;
+
+@function sort($map, $sort-by: "values", $order: $order) {
     $less:  ();
     $equal: ();
     $large: ();
@@ -36,7 +39,7 @@
     @return $map;
 }
 
-@function sort-units($map, $sort-by: "values", $order: defaults.$unit-order) {
+@function sort-units($map, $sort-by: "values", $order: $unit-order) {
     $sorted: ();
 
     $values: list.index("values" "value" "val" "v", $sort-by);

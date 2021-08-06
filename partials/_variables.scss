@@ -2,12 +2,8 @@
 
 // Build Variables
 
-$baseurl:               "" !default;
-
 $native-scroll:         false !default;
-
 $device-dp:             () !default;
-
 $device-dppx:           () !default;
 
 // Basic Variables
@@ -75,7 +71,7 @@ $transitions: (
 // Breakpoints
 
 $bp: (
-    "laptop":    1000px,
+    "laptop":   1000px,
     "tablet":   800px,
     "mobile":   600px,
 ) !default;
@@ -83,3 +79,10 @@ $bp: (
 // Functional
 
 $angles: ("top": 0deg, "bottom": 180deg, "left": 90deg, "right": 270deg);
+
+$order:
+  "!" "#" "$" "%" "&" "'" "(" ")" "*" "+" "," "-" "." "/" "[" "\\" "]" "^" "_" "{" "|" "}" "~"
+  "0" "1" "2" "3" "4" "5" "6" "7" "8" "9"
+  "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z" !default;
+
+$unit-order: "px" "em" "rem" "%" !default;

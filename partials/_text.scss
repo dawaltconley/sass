@@ -2,6 +2,9 @@
 @use "sass:map";
 @use "variables" as v;
 
+$text-shadow: v.$text-shadow !default;
+$full-shadow: v.$full-shadow !default;
+
 /*
  * Typography
  */
@@ -26,11 +29,11 @@
 }
 
 .shadow {
-    text-shadow: v.$text-shadow;
+    text-shadow: $text-shadow;
 }
 
 .full-shadow {
-    text-shadow: v.$full-shadow;
+    text-shadow: $full-shadow;
 }
 
 .font-smoothing-normal {
