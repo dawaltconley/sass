@@ -109,7 +109,7 @@ $device-dppx:   c.$device-dppx !default;
             $image: (linear-gradient(rgba(black, $darken), rgba(black, $darken)), $image);
         }
         @if $responsive {
-            @include responsive-image($image);
+            @include responsive($image);
         } @else {
             background-image: $image;
         }
