@@ -8,7 +8,13 @@ const sassCompile = () => gulp.src('eleventy/css/**/*.scss')
     }).on('error', sass.logError))
     .pipe(gulp.dest('eleventy/_site/css'));
 
-const sassWatch = () => gulp.watch('eleventy/css/**/*.scss', sassCompile);
+const sassWatch = () => gulp.watch([
+    './_config.scss',
+    './functions/**/*.scss',
+    './mixins/**/*.scss',
+    './styles/**/*.scss',
+    './eleventy/css/**/*.scss'
+], sassCompile);
 
 exports.build = sassCompile;
 
