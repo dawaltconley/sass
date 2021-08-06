@@ -1,9 +1,9 @@
 @use "sass:map";
-@use "config" as v;
+@use "../config" as c;
 
 // extending from
-@use "placeholders";
-@use "base";
+@use "./placeholders";
+@use "./base";
 
 /*
  * Links
@@ -41,7 +41,7 @@
     text-align: center;
     text-shadow: none;
     border-radius: 7px;
-    transition-duration: map.get(v.$transitions, default) or .3s;
+    transition-duration: map.get(c.$transitions, default) or .3s;
     transition-property: color, background-color;
 }
 

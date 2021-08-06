@@ -1,14 +1,14 @@
 @use "sass:list";
 @use "sass:map";
 @use "sass:string";
-@use 'functions/strings';
-@use 'config' as v;
+@use '../functions/strings';
+@use '../config' as c;
 
 // extending from
-@use "styles/placeholders";
+@use "../styles/placeholders";
 
-$device-dp:     v.$device-dp !default;
-$device-dppx:   v.$device-dppx !default;
+$device-dp:     c.$device-dp !default;
+$device-dppx:   c.$device-dppx !default;
 
 @mixin responsive($image, $breakpoints: $device-dp, $densities: $device-dppx) {
     @if $breakpoints and list.length($breakpoints) > 0 {

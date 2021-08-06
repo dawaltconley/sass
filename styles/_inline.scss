@@ -1,5 +1,5 @@
-@use "config" as v;
-@use "display";
+@use "../config" as c;
+@use "./display";
 
 /*
  * Inline Layouts
@@ -11,7 +11,7 @@
     }
 
     > * {
-        font-size: v.$base-font-size;
+        font-size: c.$base-font-size;
     }
 }
 

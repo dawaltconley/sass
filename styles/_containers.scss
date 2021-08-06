@@ -1,8 +1,8 @@
-@use "config" as v;
-@use "mixins/convenience" as mix;
+@use "../config" as c;
+@use "../mixins/convenience" as mix;
 
 // extending from
-@use "layout";
+@use "./layout";
 
 /*
  * Containers
@@ -59,8 +59,8 @@
 }
 
 .contains-3d {
-    -webkit-perspective: v.$perspective;
-    perspective: v.$perspective;
+    -webkit-perspective: c.$perspective;
+    perspective: c.$perspective;
 
     &-deep * {
         @extend .contains-3d;

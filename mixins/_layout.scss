@@ -1,10 +1,10 @@
 @use "sass:list";
 @use "sass:map";
-@use "functions/compare";
-@use "functions/sides";
+@use "../functions/compare";
+@use "../functions/sides";
 
 // extend from
-@use "styles/placeholders";
+@use "../styles/placeholders";
 
 @mixin size($name, $size) {
     $width: null;

@@ -3,7 +3,7 @@
 @use "sass:math";
 @use "sass:meta";
 @use "sass:string";
-@use "config" as var;
+@use "../config" as var;
 
 @function _lt($a, $b, $order) {
   @if meta.type-of($a) == "number" and meta.type-of($b) == "number" {

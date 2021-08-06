@@ -1,10 +1,10 @@
-@use "config" as v;
+@use "../config" as c;
 
 /*
  * Transitions
  */
 
-@each $name, $transition in v.$transitions {
+@each $name, $transition in c.$transitions {
     .t-#{$name} {
         -webkit-transition-duration: $transition;
         transition-duration: $transition;

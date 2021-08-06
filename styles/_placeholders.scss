@@ -1,6 +1,6 @@
 // The placeholder classes here are for styles that should be overridden by any other class. They should go first in the stylesheet.
 
-@use "config" as v;
+@use "../config" as c;
 
 //
 // Display
@@ -70,7 +70,7 @@
     font-size: 0;
 
     > * {
-        font-size: v.$base-font-size;
+        font-size: c.$base-font-size;
     }
 }
 

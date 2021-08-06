@@ -1,12 +1,12 @@
 @use "sass:list";
-@use 'config' as v;
-@use 'mixins/convenience' as mix;
-@use 'mixins/layout';
+@use '../config' as c;
+@use '../mixins/convenience' as mix;
+@use '../mixins/layout';
 
-$sizes: v.$sizes !default;
-$spacings: v.$spacings !default;
-$borders: v.$borders !default;
-$z-range: v.$z-range !default;
+$sizes: c.$sizes !default;
+$spacings: c.$spacings !default;
+$borders: c.$borders !default;
+$z-range: c.$z-range !default;
 
 /*
  * Basic

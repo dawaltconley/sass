@@ -1,10 +1,10 @@
 @use "sass:list";
 @use "sass:map";
 @use "sass:math";
-@use "config" as v;
+@use "../config" as c;
 
-$order: v.$order !default;
-$unit-order: v.$unit-order !default;
+$order: c.$order !default;
+$unit-order: c.$unit-order !default;
 
 @function sort($map, $sort-by: "values", $order: $order) {
     $less:  ();

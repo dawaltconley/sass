@@ -1,5 +1,5 @@
-@use 'mixins/convenience' as mix;
-@use 'mixins/images';
+@use '../mixins/convenience' as mix;
+@use '../mixins/images';
 
 .breakpoint-media-queries {
     @include mix.mq { /* mq */ }

@@ -1,9 +1,9 @@
 @use "sass:list";
 @use "sass:map";
-@use "config" as v;
+@use "../config" as c;
 
-$text-shadow: v.$text-shadow !default;
-$full-shadow: v.$full-shadow !default;
+$text-shadow: c.$text-shadow !default;
+$full-shadow: c.$full-shadow !default;
 
 /*
  * Typography
@@ -97,14 +97,14 @@ $full-shadow: v.$full-shadow !default;
 }
 
 .fs-larger {
-    font-size: map.get(v.$font-sizes, larger) or larger;
+    font-size: map.get(c.$font-sizes, larger) or larger;
 }
 
 .fs-smaller {
-    font-size: map.get(v.$font-sizes, smaller) or smaller;
+    font-size: map.get(c.$font-sizes, smaller) or smaller;
 }
 
-@each $name, $size in v.$font-sizes {
+@each $name, $size in c.$font-sizes {
     @if not list.index(larger smaller, $name) {
         .fs-#{$name} {
             font-size: $size;

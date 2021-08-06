@@ -1,8 +1,8 @@
 @use "sass:math";
 @use "sass:list";
 @use "sass:map";
-@use "config" as v;
-@use "mixins/convenience" as mix;
+@use "../config" as c;
+@use "../mixins/convenience" as mix;
 
 /*
  * Reset some basic elements
@@ -30,7 +30,7 @@ dl, dd, ol, ul, figure {
 html, body {
     max-width: 100%;
     overflow-x: hidden;
-    @if v.$native-scroll { scroll-behavior: smooth; }
+    @if c.$native-scroll { scroll-behavior: smooth; }
 }
 
 /*
@@ -38,7 +38,7 @@ html, body {
  */
 
 body {
-    font: v.$base-font-weight list.slash(v.$base-font-size, v.$base-line-height) v.$base-font-family;
+    font: c.$base-font-weight list.slash(c.$base-font-size, c.$base-line-height) c.$base-font-family;
     -webkit-text-size-adjust: 100%;
     -webkit-font-feature-settings: "kern" 1;
     -moz-font-feature-settings: "kern" 1;
@@ -57,26 +57,26 @@ ul, ol, dl, figure,
 article header,
 %vertical-rhythm,
 .v-rhythm > * {
-    margin-bottom: v.$default-spacing;
+    margin-bottom: c.$default-spacing;
     margin-right: 0;
 }
 
 %horizontal-rhythm,
 .h-rhythm > * {
-    margin-right: v.$default-spacing;
+    margin-right: c.$default-spacing;
     margin-bottom: 0;
 }
 
-@each $name, $value in v.$spacings {
+@each $name, $value in c.$spacings {
     .v-rhythm-#{$name} > * {
         @extend %vertical-rhythm;
-        @if $value != v.$default-spacing {
+        @if $value != c.$default-spacing {
             margin-bottom: $value;
         }
     }
     .h-rhythm-#{$name} > * {
         @extend %horizontal-rhythm;
-        @if $value != v.$default-spacing {
+        @if $value != c.$default-spacing {
             margin-right: $value;
         }
     }
@@ -145,10 +145,10 @@ figcaption {
  */
 
 ul, ol, .indented {
-    margin-left: v.$default-spacing * 2;
+    margin-left: c.$default-spacing * 2;
 
-    @media screen and (max-width: map.get(v.$bp, mobile)) {
-        margin-left: v.$default-spacing;
+    @media screen and (max-width: map.get(c.$bp, mobile)) {
+        margin-left: c.$default-spacing;
     }
 }
 
@@ -169,14 +169,14 @@ li {
  */
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: v.$heading-font-family;
-    font-weight: v.$heading-font-weight;
+    font-family: c.$heading-font-family;
+    font-weight: c.$heading-font-weight;
     line-height: 1;
     text-decoration: none;
 }
 
 @for $i from 1 through 6 { // generate header styles
-    $font-size: if($i > list.length(v.$heading-sizes), 1em, list.nth(v.$heading-sizes, $i));
+    $font-size: if($i > list.length(c.$heading-sizes), 1em, list.nth(c.$heading-sizes, $i));
 
     h#{$i}, .fs-h#{$i} {
         font-size: $font-size;
@@ -186,7 +186,7 @@ h1, h2, h3, h4, h5, h6 {
 
 hr {
     @extend .border-light-t !optional;
-    margin: v.$default-spacing 0;
+    margin: c.$default-spacing 0;
     height: 1px;
     border: 0;
     border-top-width: 1px;
@@ -225,7 +225,7 @@ blockquote {
     $border-size: 4px;
     border-left-width: $border-size;
     border-left-style: solid;
-    padding-left: v.$default-spacing - $border-size;
+    padding-left: c.$default-spacing - $border-size;
     letter-spacing: -1px;
     font-style: italic;
 }

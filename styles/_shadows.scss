@@ -1,6 +1,6 @@
 // extending from
-@use "placeholders";
-@use "layout";
+@use "./placeholders";
+@use "./layout";
 
 $density: 0.3 !default; // opacity of shadow at center
 $reach: 0% !default; // relative radius of the center opacity, before it begins fading

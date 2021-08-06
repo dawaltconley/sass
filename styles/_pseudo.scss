@@ -1,11 +1,11 @@
 @use "sass:map";
 @use "sass:string";
-@use "functions/sides";
-@use "config" as v;
-@use "mixins/convenience" as mix;
+@use "../functions/sides";
+@use "../config" as c;
+@use "../mixins/convenience" as mix;
 
 // extending from
-@use "placeholders";
+@use "./placeholders";
 
 /*
  * Hover
@@ -117,14 +117,14 @@
     //         @extend %hover-shadow;
     //
     //         &::before {
-    //             background: linear-gradient(map.get(v.$angles, $side), rgba(black, 0.3), rgba(black, 0));
+    //             background: linear-gradient(map.get(c.$angles, $side), rgba(black, 0.3), rgba(black, 0));
     //         }
     //     }
     // }
     @include sides.all using ($side) {
         @extend %hover-shadow;
         &::before {
-            background: linear-gradient(map.get(v.$angles, $side), rgba(black, 0.3), rgba(black, 0));
+            background: linear-gradient(map.get(c.$angles, $side), rgba(black, 0.3), rgba(black, 0));
         }
     }
 }
