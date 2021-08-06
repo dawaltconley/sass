@@ -3,6 +3,9 @@
 @use "sass:string";
 @use '../functions/strings';
 
+// extending from
+@use "../placeholders";
+
 $device-dp:             () !default;
 $device-dppx:           () !default;
 
@@ -87,7 +90,7 @@ $device-dppx:           () !default;
 @mixin background($image: none, $x: center, $y: center, $size: cover, $repeat: no-repeat, $lighten: 0, $darken: 0, $blur: null, $responsive: false) {
 
     @if $blur {
-        @extend .relative, .overflow-h;
+        @extend %relative, %overflow-h;
 
         &::after {
             $blur-offset: -$blur * 2;
@@ -111,7 +114,7 @@ $device-dppx:           () !default;
         }
     } @else {
         @if $lighten > 0 {
-            @extend .relative;
+            @extend %relative;
 
             &::before {
                 content: "";
@@ -121,7 +124,7 @@ $device-dppx:           () !default;
                 z-index: 0;
             }
         } @else if $darken > 0 {
-            @extend .relative;
+            @extend %relative;
 
             &::before {
                 content: "";

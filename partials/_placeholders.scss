@@ -1,0 +1,77 @@
+@use "variables" as v;
+
+//
+// Display
+//
+
+%block {
+    display: block;
+}
+
+%inline {
+    display: inline;
+}
+
+%inline-block {
+    display: inline-block;
+}
+
+%table {
+    display: table;
+}
+
+%row {
+    display: table-row;
+}
+
+%cell {
+    display: table-cell;
+}
+
+%hidden {
+    display: none;
+}
+
+//
+// Positioning
+//
+
+%relative {
+    position: relative;
+}
+
+%absolute {
+    position: absolute;
+}
+
+%fixed {
+    position: fixed;
+}
+
+//
+// Misc
+//
+
+%full-width {
+    width: 100%;
+}
+
+%overflow-v {
+    overflow: visible;
+}
+
+%overflow-h {
+    overflow: hidden;
+}
+
+%font-0 {
+    font-size: 0;
+
+    > * {
+        font-size: v.$base-font-size;
+    }
+}
+
+%t-inherit {
+    transition: inherit;
+}

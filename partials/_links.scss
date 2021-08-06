@@ -1,4 +1,10 @@
 @use "sass:map";
+@use "variables" as v;
+
+// extending from
+@use "placeholders";
+@use "base";
+
 /*
  * Links
  */
@@ -30,12 +36,12 @@
 }
 
 .button, .button-o, {
-    @extend %vertical-rhythm, .inline-block, .font-smoothing-normal, .subtle-icon;
+    @extend %vertical-rhythm, %inline-block, .subtle-icon;
     padding: .5em 1em;
     text-align: center;
     text-shadow: none;
     border-radius: 7px;
-    transition-duration: map.get($transitions, default);
+    transition-duration: map.get(v.$transitions, default) or .3s;
     transition-property: color, background-color;
 }
 

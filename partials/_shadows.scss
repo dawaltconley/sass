@@ -1,12 +1,17 @@
+// extending from
+@use "placeholders";
+@use "layout";
+
+$density: 0.3 !default; // opacity of shadow at center
+$reach: 0% !default; // relative radius of the center opacity, before it begins fading
+$overflow: 50% !default; // how far the shadow extends beyond the element, relative to the size of the element
+
 /*
  * Shadows
  */
 
 .radial-shadow {
-    $density: 0.3; // opacity of shadow at center
-    $reach: 0%; // relative radius of the center opacity, before it begins fading
-    $overflow: 50%; // how far the shadow extends beyond the element, relative to the size of the element
-    @extend .relative, .overflow-v;
+    @extend %relative, %overflow-v;
 
     &::before {
         content: "";

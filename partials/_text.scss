@@ -1,5 +1,7 @@
 @use "sass:list";
 @use "sass:map";
+@use "variables" as v;
+
 /*
  * Typography
  */
@@ -24,11 +26,11 @@
 }
 
 .shadow {
-    text-shadow: $text-shadow;
+    text-shadow: v.$text-shadow;
 }
 
 .full-shadow {
-    text-shadow: $full-shadow;
+    text-shadow: v.$full-shadow;
 }
 
 .font-smoothing-normal {
@@ -92,14 +94,14 @@
 }
 
 .fs-larger {
-    font-size: if(map.has-key($font-sizes, larger), map.get($font-sizes, larger), larger);
+    font-size: map.get(v.$font-sizes, larger) or larger;
 }
 
 .fs-smaller {
-    font-size: if(map.has-key($font-sizes, smaller), map.get($font-sizes, smaller), smaller);
+    font-size: map.get(v.$font-sizes, smaller) or smaller;
 }
 
-@each $name, $size in $font-sizes {
+@each $name, $size in v.$font-sizes {
     @if not list.index(larger smaller, $name) {
         .fs-#{$name} {
             font-size: $size;

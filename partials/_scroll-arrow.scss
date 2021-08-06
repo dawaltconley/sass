@@ -1,0 +1,21 @@
+@use "sass:map";
+@use "variables" as v;
+
+$breakpoint: map.get(v.$bp, "mobile") or 600px !default;
+$arrow-size: 36px !default;
+$arrow-padding: 4px !default;
+
+/*
+ * Icons
+ */
+
+.scroll-arrow {
+    font-size: $arrow-size;
+    padding: $arrow-padding;
+}
+
+@media screen and (max-height: $breakpoint) and (orientation: landscape) {
+    [data-force-fullscreen].screen-height .scroll-arrow {
+        display: none;
+    }
+}

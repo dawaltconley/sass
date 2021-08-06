@@ -1,25 +1,36 @@
 @use "sass:map";
+@use "variables" as v;
+@use "mixins/layout";
+
+// extending from
+@use "layout" as l;
+
+$breakpoint: map.get(v.$bp, mobile) or 600px !default;
+$padding-mobile: map.get(v.$spacings, m) or v.$default-spacing or 30px !default;
+$padding-desktop: map.get(v.$spacings, l) or $padding-mobile * 2 !default;
+
 /*
  * Wrappers
  */
 
 .wrapper-padding {
-    padding-left: map.get($spacings, l);
-    padding-right: map.get($spacings, l);
+    padding-left: $padding-desktop;
+    padding-right: $padding-desktop;
 
-    @media screen and (max-width: map.get($bp, mobile)) {
-        padding-left: map.get($spacings, m);
-        padding-right: map.get($spacings, m);
+    @media screen and (max-width: $breakpoint) {
+        padding-left: $padding-mobile;
+        padding-right: $padding-mobile;
     }
 }
 
 .content-wrapper {
-    @include wrapper((laptop, tablet, mobile));
+    @extend .clearfix;
+    @include layout.wrapper((laptop, tablet, mobile));
 }
 
 .text-wrapper {
     box-sizing: content-box;
-    max-width: $base-line-length;
+    max-width: v.$base-line-length;
 }
 
 .unwrap {

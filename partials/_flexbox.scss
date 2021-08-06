@@ -1,8 +1,14 @@
-@use "display";
-
 /*
  * Flexbox
  */
+
+%flex {
+    display: flex;
+}
+
+.inline-flex {
+    display: inline-flex;
+}
 
 .flex-row {
     @extend %flex;

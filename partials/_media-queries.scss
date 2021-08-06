@@ -1,43 +1,44 @@
 @use "functions/sides";
+@use "mixins/convenience" as mix;
 
 /*
  * Media Queries
  */
 
 .hide {
-    @include mq {
+    @include mix.mq {
         display: none;
     }
 }
 
 .absolute {
-    @include mq {
+    @include mix.mq {
         position: absolute;
     }
 }
 
 .hover-display {
-    @include mq {
-        @include no-hover {
+    @include mix.mq {
+        @include mix.no-hover {
             display: none;
         }
     }
 }
 
 .float-none {
-    @include mq {
+    @include mix.mq {
         float: none;
     }
 }
 
 .table-columns {
-    @include mq($queries: (gt: min)) {
-        @include table-columns;
+    @include mix.mq($queries: (gt: min)) {
+        @include mix.table-columns;
     }
 }
 
 .flex-row {
-    @include mq {
+    @include mix.mq {
         display: flex;
         flex-direction: row;
 
@@ -48,7 +49,7 @@
 }
 
 .flex-col {
-    @include mq {
+    @include mix.mq {
         display: flex;
         flex-direction: column;
 
@@ -59,19 +60,19 @@
 }
 
 .inline-flex {
-    @include mq("mobile") {
+    @include mix.mq("mobile") {
         display: inline-flex;
     }
 }
 
 .full-width {
-    @include mq {
+    @include mix.mq {
         width: 100%;
     }
 }
 
 .auto-width {
-    @include mq {
+    @include mix.mq {
         width: auto;
         min-width: auto;
         max-width: none;
@@ -79,7 +80,7 @@
 }
 
 .auto-height {
-    @include mq {
+    @include mix.mq {
         height: auto;
         min-height: auto;
         max-height: none;
@@ -88,7 +89,7 @@
 
 .margin-auto {
     @include sides.all using ($side) {
-        @include mq {
+        @include mix.mq {
             margin-#{$side}: auto;
         }
     }
@@ -96,7 +97,7 @@
 
 .margin-0 {
     @include sides.all using ($side) {
-        @include mq {
+        @include mix.mq {
             margin-#{$side}: 0;
         }
     }
@@ -104,7 +105,7 @@
 
 .padding-0 {
     @include sides.all using ($side) {
-        @include mq {
+        @include mix.mq {
             padding-#{$side}: 0;
         }
     }
@@ -112,7 +113,7 @@
 
 .border-0 {
     @include sides.all using ($side) {
-        @include mq {
+        @include mix.mq {
             border-#{$side}-width: 0;
         }
     }

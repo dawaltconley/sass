@@ -1,3 +1,6 @@
+@use "variables" as v;
+@use "display";
+
 /*
  * Inline Layouts
  */
@@ -8,7 +11,7 @@
     }
 
     > * {
-        font-size: $base-font-size;
+        font-size: v.$base-font-size;
     }
 }
 
