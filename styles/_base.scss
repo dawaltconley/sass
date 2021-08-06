@@ -38,7 +38,7 @@ html, body {
  */
 
 body {
-    font: c.$base-font-weight list.slash(c.$base-font-size, c.$base-line-height) c.$base-font-family;
+    font: c.$base-font-weight list.slash(c.$base-font-size, c.$base-line-height) #{list.join(c.$base-font-family, (), 'comma', false)};
     -webkit-text-size-adjust: 100%;
     -webkit-font-feature-settings: "kern" 1;
     -moz-font-feature-settings: "kern" 1;
