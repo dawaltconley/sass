@@ -1,8 +1,6 @@
 @use 'normalize.css/normalize';
-@use 'sass-themes/build';
-@use 'sass-themes/styles/all';
 
-@use 'partials/variables' with (
+@use 'config' with (
     $sizes: (
         "full":             100%,
         "half":             50%,
@@ -22,6 +20,7 @@
     ),
 );
 
-@use 'index';
+@use 'themes';
+@use 'styles/all';
 @use 'parallax';
 @use 'home';

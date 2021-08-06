@@ -1,5 +1,5 @@
 @use "sass:map";
-@use "variables" as v;
+@use "config" as v;
 
 $breakpoint: map.get(v.$bp, "mobile") or 600px !default;
 $arrow-size: 36px !default;

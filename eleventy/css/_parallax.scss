@@ -1,4 +1,4 @@
-@use 'partials/variables' as v;
+@use 'config' as v;
 @use 'sass-parallax/parallax' with ($perspective: v.$perspective, $IE: true);
 
 body {
