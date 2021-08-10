@@ -1,0 +1,8 @@
+@use 'sass:map';
+@use '../../config' as c;
+@use '../../mixins/convenience' as mix;
+
+.inline-col {
+    $breakpoints: map.values(c.$bp);
+    @include mix.inline-columns($breakpoints, c.$default-spacing);
+}
