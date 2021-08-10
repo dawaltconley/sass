@@ -133,7 +133,7 @@
             $bp-col-map: map.merge($bp-col-map, ($breakpoint: $columns));
         }
 
-        $bp-col-map: map-sort($bp-col-map, keys);
+        $bp-col-map: maps.sort($bp-col-map, keys);
         $last-col: 1;
 
         @for $i from 1 through list.length($bp-col-map) {
