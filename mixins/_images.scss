@@ -2,6 +2,7 @@
 @use "sass:map";
 @use "sass:string";
 @use '../functions/strings';
+@use '../functions/lists';
 @use '../config' as c;
 
 // extending from
@@ -73,7 +74,7 @@ $device-dppx:   c.$device-dppx !default;
                 $media-queries: ();
                 @each $size-query in $size-queries { // All combinations of size and resolution queries
                     @each $res-query in ($webkit-res, $resolution) {
-                        $media-queries: list.append($media-queries, "#{$size-query} and #{join-str($res-query, " and ")}", comma);
+                        $media-queries: list.append($media-queries, "#{$size-query} and #{lists.join-str($res-query, " and ")}", comma);
                     }
                 }
 
