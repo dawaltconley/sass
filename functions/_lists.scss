@@ -2,8 +2,13 @@
 @use "sass:math";
 @use "sass:meta";
 @use "sass:string";
+@use "./compare";
+@use "../config" as c;
 
-@function sort($list, $order: $default-order) {
+$order: c.$order !default;
+$unit-order: c.$unit-order !default;
+
+@function sort($list, $order: $order) {
     $sep: list.separator($list);
     $less:  ();
     $equal: ();
@@ -15,9 +20,9 @@
         @each $item in $list {
             @if $item == $seed {
                 $equal: list.append($equal, $item, $sep);
-            } @else if _lt($item, $seed, $order) {
+            } @else if compare.lt($item, $seed, $order) {
                 $less: list.append($less, $item, $sep);
-            } @else if not _lt($item, $seed, $order) {
+            } @else if not compare.lt($item, $seed, $order) {
                 $large: list.append($large, $item, $sep);
             }
         }
@@ -28,7 +33,7 @@
     @return $list;
 }
 
-@function sort-units($list, $order: $default-unit-order) {
+@function sort-units($list, $order: $unit-order) {
     $sep: list.separator($list);
     $sorted: ();
     @each $unit in $order {

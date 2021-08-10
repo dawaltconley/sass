@@ -1,6 +1,7 @@
 @use "sass:list";
 @use "sass:map";
 @use "sass:math";
+@use "./compare";
 @use "../config" as c;
 
 $order: c.$order !default;
@@ -26,9 +27,9 @@ $unit-order: c.$unit-order !default;
 
             @if $item == $seed {
                 $equal: map.merge($equal, ($k:$v));
-            } @else if _lt($item, $seed, $order) {
+            } @else if compare.lt($item, $seed, $order) {
                 $less: map.merge($less, ($k:$v));
-            } @else if not _lt($item, $seed, $order) {
+            } @else if not compare.lt($item, $seed, $order) {
                 $large: map.merge($large, ($k:$v));
             }
         }

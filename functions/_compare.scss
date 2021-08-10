@@ -3,9 +3,11 @@
 @use "sass:math";
 @use "sass:meta";
 @use "sass:string";
-@use "../config" as var;
+@use "../config" as c;
 
-@function _lt($a, $b, $order) {
+$order: c.$order !default;
+
+@function lt($a, $b, $order: $order) {
   @if meta.type-of($a) == "number" and meta.type-of($b) == "number" {
     @return $a < $b;
   }
@@ -25,7 +27,7 @@
   @return string.length($a) < string.length($b);
 }
 
-@function bp($breakpoint, $bp-list: var.$bp) {
+@function bp($breakpoint, $bp-list: c.$bp) {
     $type: meta.type-of($breakpoint);
     @if $type == string {
         @if map.has-key($bp-list, $breakpoint) {
