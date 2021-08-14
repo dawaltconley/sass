@@ -24,6 +24,10 @@ $z-range: c.$z-range !default;
     position: fixed;
 }
 
+.static {
+    position: static;
+}
+
 .float-left {
     float: left;
 }
