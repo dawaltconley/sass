@@ -32,6 +32,10 @@
     @extend .flex-justify-center, .flex-align-center;
 }
 
+.flex-align-stretch {
+    align-items: stretch;
+}
+
 .flex-align-bottom {
     align-items: flex-end;
 }
