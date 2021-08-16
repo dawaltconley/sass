@@ -18,6 +18,7 @@
         "l":        60px,
         "full":     100%,
     ),
+    // $anchor-override: '%unlink' '%subtle-link', // forces use of selector list without extra classes
 );
 
 @use 'themes';

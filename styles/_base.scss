@@ -4,6 +4,8 @@
 @use "../config" as c;
 @use "../mixins/convenience" as mix;
 
+$anchor-override: c.$anchor-override !default;
+
 /*
  * Reset some basic elements
  */
@@ -197,7 +199,7 @@ hr {
  * Links
  */
 
-a {
+a:not(#{list.join($anchor-override, (), comma, false)}) {
     text-decoration: none;
 
     &:hover {
