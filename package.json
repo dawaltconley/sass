@@ -1,6 +1,6 @@
 {
   "name": "@dawaltconley/sass",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "description": "Reuseable & customizeable sass library.",
   "main": "_config.scss",
   "files": [
