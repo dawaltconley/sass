@@ -25,3 +25,10 @@
 @use 'parallax';
 @use 'home';
 @use 'mixin-test';
+@use 'mixins/convenience' as mix;
+
+.test-mq {
+    @include mix.mq(mobile, lt) {
+        color: blue;
+    }
+}
