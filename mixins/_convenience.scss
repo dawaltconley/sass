@@ -37,7 +37,7 @@ $possible-queries: (
     @if (list.length($bp-map) == 1 and meta.type-of($queries) == 'string') {
         // if single bp and query string provided, don't create a new class; treat as a wrapper for @media
         $query: map.get($possible-queries, $queries);
-        $value: list.nth(list.nth($bp-map, 1), 1);
+        $value: list.nth(list.nth($bp-map, 1), 2);
         @include _media($query, $value) {
             @content;
         }
