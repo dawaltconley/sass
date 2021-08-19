@@ -11,40 +11,65 @@
 // extending from
 @use "../styles/placeholders";
 
+$possible-queries: (
+    lt: max,
+    gt: min,
+    max: max,
+    min: min,
+);
+
+@mixin _media($query, $value) {
+    @if ($query == "min") and (list.index('px', math.unit($value))) {
+        $value: $value + 1;
+    }
+    @media screen and (#{$query}-width: $value) {
+        @content;
+    }
+}
+
 @mixin mq($breakpoints: var.$bp, $queries: (lt: max, gt: min)) {
+    // get $bp values based on names in $breakpoints, if they match
     $bp-map: ();
     @each $name, $value in $breakpoints {
         $bp-map: map.merge($bp-map, ($name: if($value, $value, compare.bp($name))));
     }
-    @each $prefix, $query in $queries {
-        $sorted-bp: maps.sort-units($bp-map, $order: px em);
-        @for $i from 1 through list.length($sorted-bp) {
-            $unit-set: maps.sort(list.nth($sorted-bp, $i));
-            @if $query == "max" {
-                $unit-set: maps.reverse($unit-set);
-            }
-            $sorted-bp: list.set-nth($sorted-bp, $i, $unit-set);
-        }
-        $sorted-bp: maps.merge-all($sorted-bp);
 
-        $last-bp: null;
-        @each $name, $value in $sorted-bp {
-            @if $value == map.get($sorted-bp, $last-bp) {
-                @each $selector in selector.parse(#{&}) {
-                    @at-root #{$selector}-#{$prefix}-#{$name} {
-                        @extend #{$selector}-#{$prefix}-#{$last-bp};
+    @if (list.length($bp-map) == 1 and meta.type-of($queries) == 'string') {
+        // if single bp and query string provided, don't create a new class; treat as a wrapper for @media
+        $query: map.get($possible-queries, $queries);
+        $value: list.nth(list.nth($bp-map, 1), 1);
+        @include _media($query, $value) {
+            @content;
+        }
+    } @else {
+        @each $prefix, $query in $queries {
+            // sort breakpoints so that they are included in the default order for overriding eachother
+            $sorted-bp: maps.sort-units($bp-map, $order: px em);
+            @for $i from 1 through list.length($sorted-bp) {
+                $unit-set: maps.sort(list.nth($sorted-bp, $i));
+                @if $query == "max" {
+                    $unit-set: maps.reverse($unit-set);
+                }
+                $sorted-bp: list.set-nth($sorted-bp, $i, $unit-set);
+            }
+            $sorted-bp: maps.merge-all($sorted-bp);
+
+            $last-bp: null;
+            @each $name, $value in $sorted-bp {
+                @if $value == map.get($sorted-bp, $last-bp) {
+                    @each $selector in selector.parse(#{&}) { // this is odd...meant to combine duplicate breakpoints, but why looping on amp? all comma'ed selectors?
+                        @at-root #{$selector}-#{$prefix}-#{$name} {
+                            @extend #{$selector}-#{$prefix}-#{$last-bp};
+                        }
                     }
-                }
-            } @else {
-                @if ($query == "min") and (list.index('px', math.unit($value))) {
-                    $value: $value + 1;
-                }
-                &-#{$prefix}-#{$name} {
-                    @media screen and (#{$query}-width: $value) {
-                        @content;
+                } @else {
+                    &-#{$prefix}-#{$name} {
+                        @include _media($query, $value) {
+                            @content;
+                        }
                     }
+                    $last-bp: $name;
                 }
-                $last-bp: $name;
             }
         }
     }
