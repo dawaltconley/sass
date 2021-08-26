@@ -114,6 +114,7 @@ img {
 
 figcaption {
     @extend .text-light !optional;
+    font-size: smaller;
     font-style: italic;
     font-synthesis: bold;
     text-align: center;
@@ -136,10 +137,6 @@ figure > img {
     display: block;
 }
 
-figcaption {
-    font-size: smaller;
-}
-
 /**
  * Lists
  */
@@ -155,7 +152,7 @@ ul, ol, .indented {
 li {
     > ul,
     > ol {
-         margin-bottom: 0;
+        margin-bottom: 0;
     }
 }
 
