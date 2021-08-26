@@ -8,23 +8,23 @@
 $order: c.$order !default;
 
 @function lt($a, $b, $order: $order) {
-  @if meta.type-of($a) == "number" and meta.type-of($b) == "number" {
-    @return $a < $b;
-  }
-
-  $a: string.to-lower-case($a + string.unquote(""));
-  $b: string.to-lower-case($b + string.unquote(""));
-
-  @for $i from 1 through math.min(string.length($a), string.length($b)) {
-    $char-a: string.slice($a, $i, $i);
-    $char-b: string.slice($b, $i, $i);
-
-    @if $char-a and $char-b and list.index($order, $char-a) != list.index($order, $char-b) {
-      @return list.index($order, $char-a) < list.index($order, $char-b);
+    @if meta.type-of($a) == "number" and meta.type-of($b) == "number" {
+        @return $a < $b;
     }
-  }
 
-  @return string.length($a) < string.length($b);
+    $a: string.to-lower-case($a + string.unquote(""));
+    $b: string.to-lower-case($b + string.unquote(""));
+
+    @for $i from 1 through math.min(string.length($a), string.length($b)) {
+        $char-a: string.slice($a, $i, $i);
+        $char-b: string.slice($b, $i, $i);
+
+        @if $char-a and $char-b and list.index($order, $char-a) != list.index($order, $char-b) {
+            @return list.index($order, $char-a) < list.index($order, $char-b);
+        }
+    }
+
+    @return string.length($a) < string.length($b);
 }
 
 @function bp($breakpoint, $bp-list: c.$bp) {
