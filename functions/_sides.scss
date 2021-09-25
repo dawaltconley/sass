@@ -12,6 +12,7 @@ $sides: "top", "bottom", "left", "right" !default;
     }
 }
 
+// this should be in the mixins folder 100%
 @mixin all($sep: '-') {
     @each $side in $sides {
         $o: string.slice(get-orientation($side), 1, 1);

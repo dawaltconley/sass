@@ -1,11 +1,11 @@
 @use "sass:math";
 
 @mixin animate($delay: 0s) {
-    .animate & {
+    @at-root #{selector.unify('.animate', &)} {
         @content;
     }
 
-    .animate-js & {
+    @at-root #{selector.unify('.animate-js', &)} {
         animation-delay: $delay;
     }
 }

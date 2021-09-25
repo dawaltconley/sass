@@ -18,6 +18,8 @@ $possible-queries: (
     min: min,
 );
 
+// should have an option for storing and appending to end of the document a la mqpacker
+// for both lt/gt classes and simple media queries
 @mixin _media($query, $value) {
     @if ($query == "min") and (list.index('px', math.unit($value))) {
         $value: $value + 1;
@@ -178,13 +180,32 @@ $possible-queries: (
     }
 }
 
-@mixin blur($blur) {
+@mixin blur($blur, $zoom: null) {
     -webkit-filter: blur($blur);
     filter: blur($blur);
+
+    @if $zoom {
+        width: calc(100% + #{$blur * 2})
+        height: calc(100% + #{$blur * 2})
+        @if $zoom == 'absolute' or $zoom == 'abs' {
+            top: -$blur;
+            left: -$blur;
+            bottom: -$blur;
+            right: -$blur;
+        } @else if $zoom == 'margin' {
+            margin-top: -$blur;
+            margin-left : -$blur;
+            padding-top: $blur;
+            padding-left: $blur;
+        }
+    }
 }
 
 // This mixin applies the effects its contents when a element
 // with class "hover" (either same element or nearest parent) is hovered
+
+// to-do: apply same hover styles on focus-visible? (will generate a fair amount of extra css if default)
+
 @mixin hover($hover-class: "hover") {
     @at-root &.#{$hover-class}:hover,
     #{selectors.last(&, ".#{$hover-class}:hover >", ":not(.#{$hover-class})")},

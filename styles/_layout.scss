@@ -134,7 +134,7 @@ $z-range: c.$z-range !default;
     @include layout.h-line($name, $styles);
 }
 
-.border-between > * {
+.border-between-v {
     border-top-width: 0;
     border-left-width: 0;
     border-right-width: 0;
@@ -144,11 +144,30 @@ $z-range: c.$z-range !default;
     }
 }
 
-.border-around > * {
+.border-between-h {
+    border-top-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+
+    &:last-child {
+        border-right-width: 0;
+    }
+}
+
+.border-around-v {
     border-left-width: 0;
     border-right-width: 0;
 
     &:nth-child(n + 2) {
         border-top-width: 0;
+    }
+}
+
+.border-around-h {
+    border-top-width: 0;
+    border-bottom-width: 0;
+
+    &:nth-child(n + 2) {
+        border-left-width: 0;
     }
 }

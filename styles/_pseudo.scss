@@ -89,7 +89,7 @@
     transition-property: filter;
 
     @include mix.hover {
-        @include mix.blur(5px);
+        @include mix.blur(5px); // some option for specifying blur zoom here...either always or just on hover
     }
 }
 
@@ -112,19 +112,13 @@
 }
 
 .hover-shadow {
-    // @each $side in sides.$sides {
-    //     &-#{string.slice($side, 1, 1)} {
-    //         @extend %hover-shadow;
-    //
-    //         &::before {
-    //             background: linear-gradient(map.get(c.$angles, $side), rgba(black, 0.3), rgba(black, 0));
-    //         }
-    //     }
-    // }
-    @include sides.all using ($side) {
-        @extend %hover-shadow;
-        &::before {
-            background: linear-gradient(map.get(c.$angles, $side), rgba(black, 0.3), rgba(black, 0));
+    @each $side in sides.$sides {
+        &-#{string.slice($side, 1, 1)} {
+            @extend %hover-shadow;
+
+            &::before {
+                background: linear-gradient(map.get(c.$angles, $side), rgba(black, 0.3), rgba(black, 0));
+            }
         }
     }
 }
