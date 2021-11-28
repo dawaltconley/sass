@@ -9,6 +9,14 @@ $full-shadow: c.$full-shadow !default;
  * Typography
  */
 
+.ff-base {
+    font-family: list.join((), c.$base-font-family, 'comma', false);
+}
+
+.ff-heading {
+    font-family: list.join((), c.$heading-font-family, 'comma', false);
+}
+
 @for $i from 1 through 9 {
     $weight: $i * 100;
     .fw-#{$weight} {
@@ -44,6 +52,10 @@ $full-shadow: c.$full-shadow !default;
 .font-smoothing-dark {
     -webkit-font-smoothing: antialiased !important;
     -moz-osx-font-smoothing: grayscale !important;
+}
+
+.hyphenate {
+    hyphens: auto;
 }
 
 /*
