@@ -9,7 +9,7 @@ $object-position-classes: c.$object-position-classes !default;
  * Images
  */
 
-img.object-fit {
+.object-fit {
     @each $fit in $object-fit-values {
         &-#{$fit} {
             object-fit: $fit;
@@ -19,7 +19,7 @@ img.object-fit {
 }
 
 @if $object-position-classes {
-    img.object-pos {
+    .object-pos {
         @each $x in (left, center, right) {
             @each $y in (top, center, bottom) {
                 &-#{string.slice($x, 1, 1)}#{string.slice($y, 1, 1)} {
