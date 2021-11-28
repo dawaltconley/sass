@@ -1,7 +1,9 @@
 // extending from
+@use "../config";
 @use "./placeholders";
 @use "./layout";
 
+$drop-shadow: config.$text-shadow !default;
 $density: 0.3 !default; // opacity of shadow at center
 $reach: 0% !default; // relative radius of the center opacity, before it begins fading
 $overflow: 50% !default; // how far the shadow extends beyond the element, relative to the size of the element
@@ -9,6 +11,10 @@ $overflow: 50% !default; // how far the shadow extends beyond the element, relat
 /*
  * Shadows
  */
+
+.drop-shadow {
+    box-shadow: $drop-shadow;
+}
 
 .radial-shadow {
     @extend %relative, %overflow-v;
