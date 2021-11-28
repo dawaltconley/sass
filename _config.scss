@@ -89,3 +89,16 @@ $order:
   "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z" !default;
 
 $unit-order: "px" "em" "rem" "%" !default;
+
+// convenience functions
+@function size($name) {
+    @return map.get($sizes, $name);
+}
+
+@function spacing($name) {
+    @return map.get($spacings, $name);
+}
+
+@function bp($name) {
+    @return map.get($bp, $name);
+}

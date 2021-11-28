@@ -154,6 +154,10 @@
         }
 
         @media screen and (max-width: $bp) {
+            // this is one pixel off what's expected...
+            // should probably use min-width instead
+            // may involve transitioning whole project to mobile-first
+            // including mq mixin
             max-width: $bp-next - ($min-margins * 2);
         }
     }

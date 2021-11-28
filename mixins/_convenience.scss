@@ -29,6 +29,7 @@ $possible-queries: (
     }
 }
 
+// feature: some way of producing a media query between two bps?
 @mixin mq($breakpoints: var.$bp, $queries: (lt: max, gt: min)) {
     // get $bp values based on names in $breakpoints, if they match
     $bp-map: ();
