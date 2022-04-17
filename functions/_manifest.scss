@@ -1,6 +1,2 @@
-@forward "compare" as compare-*;
-@forward "lists" as list-*;
-@forward "selectors" as selector-*;
-@forward "maps" as map-*;
-@forward "strings" as string-*;
-@forward "sides" as sides-*;
+@warn 'this manifest file is deprecated; use functions/_index.scss instead';
+@forward 'index';

@@ -1,4 +1,2 @@
-@forward "convenience";
-@forward "layout";
-@forward "images" as image-*;
-@forward "animations" as animate-*;
+@warn 'this manifest file is deprecated; use mixins/_index.scss instead';
+@forward 'index';
