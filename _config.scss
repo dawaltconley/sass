@@ -34,6 +34,12 @@ $font-sizes: (
 
 $base-font-size: map.get($font-sizes, base) !default;
 
+@function font-size($name) {
+    @return map.get($font-sizes, $name);
+}
+
+// Sizes
+
 $sizes: (
     "full":             100%,
     "half":             50%,
@@ -41,6 +47,12 @@ $sizes: (
     "no":               0,
     "auto":             auto,
 ) !default;
+
+@function size($name) {
+    @return map.get($sizes, $name);
+}
+
+// Spacings
 
 $spacings: (
     "auto":     auto,
@@ -53,6 +65,12 @@ $spacings: (
 
 $default-spacing: map.get($spacings, m) !default;
 
+@function spacing($name) {
+    @return map.get($spacings, $name);
+}
+
+// Borders
+
 $borders: (
     "basic": (
         width: 1px,
@@ -60,16 +78,28 @@ $borders: (
     ),
 ) !default;
 
+@function border($keys...) {
+    @return map.get($borders, $keys...);
+}
+
+// Misc
+
 $z-range: -9, 9 !default;
 
 $object-fit-values: cover !default;
 $object-position-classes: true !default;
+
+// Transitions
 
 $transitions: (
     "short":    .25s,
     "default": .3s,
     "long":     1s,
 ) !default;
+
+@function transition($name) {
+    @return map.get($transitions, $name);
+}
 
 // Breakpoints
 
@@ -78,6 +108,10 @@ $bp: (
     "tablet":   800px,
     "mobile":   600px,
 ) !default;
+
+@function bp($name) {
+    @return map.get($bp, $name);
+}
 
 // Functional
 
