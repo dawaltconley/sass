@@ -85,10 +85,13 @@ $unit-order: c.$unit-order !default;
 
 @function join-str($list, $str: "") {
     $return: "";
-    @for $i from 1 to list.length($list) {
-        $return: $return + list.nth($list, $i) + $str;
+    $length: list.length($list);
+    @if $length > 0 {
+        @for $i from 1 to $length {
+            $return: $return + list.nth($list, $i) + $str;
+        }
+        $return: $return + list.nth($list, $length);
     }
-    $return: $return + list.nth($list, list.length($list));
     @return $return;
 }
 
