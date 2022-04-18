@@ -84,9 +84,7 @@
         @include sides.all using ($side) {
             border-#{$side}-width: map.get($styles, width);
             border-#{$side}-style: map.get($styles, style);
-            @if map.has-key($styles, color) {
-                border-#{$side}-color: map.get($styles, color) !important;
-            }
+            border-#{$side}-color: map.get($styles, color);
         }
     }
 }
