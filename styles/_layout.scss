@@ -152,3 +152,22 @@ $z-range: c.$z-range !default;
         border-top-width: 0;
     }
 }
+
+.border-between-h > * {
+    border-top-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+
+    &:last-child {
+        border-right-width: 0;
+    }
+}
+
+.border-around-h > * {
+    border-top-width: 0;
+    border-bottom-width: 0;
+
+    &:nth-child(n + 2) {
+        border-left-width: 0;
+    }
+}
