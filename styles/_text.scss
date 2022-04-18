@@ -58,6 +58,10 @@ $full-shadow: c.$full-shadow !default;
     hyphens: auto;
 }
 
+.no-kerning {
+    font-kerning: none;
+}
+
 /*
  * Text
  */
