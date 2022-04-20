@@ -11,7 +11,7 @@
   "scripts": {
     "build": "npx gulp build ; npx @11ty/eleventy",
     "serve": "npx gulp serve & npx @11ty/eleventy --serve",
-    "test": "npm run build",
+    "test": "npx sass -q --quiet-deps -I node_modules -I . eleventy/css/main.scss > /dev/null",
     "prepublishOnly": "npm run test"
   },
   "author": "Dylan Awalt-Conley",
