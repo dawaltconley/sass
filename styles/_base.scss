@@ -177,7 +177,7 @@ h1, h2, h3, h4, h5, h6 {
 
     h#{$i}, .fs-h#{$i} {
         font-size: $font-size;
-        letter-spacing: math.div($font-size, -100);
+        // letter-spacing: math.div($font-size, -100);
     }
 }
 

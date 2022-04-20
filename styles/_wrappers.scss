@@ -5,9 +5,12 @@
 // extending from
 @use "./layout" as l;
 
-$breakpoint: map.get(c.$bp, mobile) or 600px !default;
-$padding-mobile: map.get(c.$spacings, m) or c.$default-spacing or 30px !default;
-$padding-desktop: map.get(c.$spacings, l) or $padding-mobile * 2 !default;
+// $breakpoint: map.get(c.$bp, mobile) or 600px !default;
+// $padding-mobile: map.get(c.$spacings, m) or c.$default-spacing or 30px !default;
+// $padding-desktop: map.get(c.$spacings, l) or $padding-mobile * 2 !default;
+$padding: c.$default-spacing or 30px !default;
+$breakpoints: 
+
 $content-bp: map.keys(c.$bp) !default;
 
 /*
