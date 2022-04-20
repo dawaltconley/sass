@@ -227,3 +227,10 @@ $possible-queries: (
         transform: $transform translateZ(0);
     }
 }
+
+@mixin supports-grid($is: true) {
+    $support-selector: if(not $is, 'not ', '') + '(grid-area: auto)';
+    @supports #{$support-selector}  {
+        @content;
+    }
+}
