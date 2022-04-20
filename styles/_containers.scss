@@ -1,8 +1,8 @@
-@use "../config" as c;
-@use "../mixins/convenience" as mix;
+@use '../config' as c;
+@use '../mixins/convenience' as mix;
 
 // extending from
-@use "./layout";
+@use './layout';
 
 /*
  * Containers

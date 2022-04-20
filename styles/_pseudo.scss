@@ -1,11 +1,11 @@
-@use "sass:map";
-@use "sass:string";
-@use "../functions/sides";
-@use "../config" as c;
-@use "../mixins/convenience" as mix;
+@use 'sass:map';
+@use 'sass:string';
+@use '../functions/sides';
+@use '../config' as c;
+@use '../mixins/convenience' as mix;
 
 // extending from
-@use "./placeholders";
+@use './placeholders';
 
 /*
  * Hover
@@ -38,7 +38,7 @@
 }
 
 %pseudo-fill {
-    content: "";
+    content: '';
     position: absolute;
     top: 0; left: 0;
     width: 100%;

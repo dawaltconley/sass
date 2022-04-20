@@ -1,9 +1,9 @@
-@use "sass:list";
-@use "sass:math";
-@use "sass:meta";
-@use "sass:string";
-@use "./compare";
-@use "../config" as c;
+@use 'sass:list';
+@use 'sass:math';
+@use 'sass:meta';
+@use 'sass:string';
+@use './compare';
+@use '../config' as c;
 
 $order: c.$order !default;
 $unit-order: c.$unit-order !default;
@@ -83,8 +83,8 @@ $unit-order: c.$unit-order !default;
     @return $return;
 }
 
-@function join-str($list, $str: "") {
-    $return: "";
+@function join-str($list, $str: '') {
+    $return: '';
     $length: list.length($list);
     @if $length > 0 {
         @for $i from 1 to $length {
@@ -99,9 +99,9 @@ $unit-order: c.$unit-order !default;
     $result: null;
 
     @if meta.type-of($index) != number {
-        @warn "$index: #{string.quote($index)} is not a number for `insert-nth`.";
+        @warn '$index: #{string.quote($index)} is not a number for `insert-nth`.';
     } @else if $index < 1 {
-        @warn "List index 0 must be a non-zero integer for `insert-nth`";
+        @warn 'List index 0 must be a non-zero integer for `insert-nth`';
     } @else if $index > list.length($list) {
         @warn "List index is #{$index} but list is only #{list.length($list)} item long for `insert-nth'.";
     } @else {

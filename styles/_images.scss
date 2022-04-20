@@ -1,6 +1,6 @@
-@use "sass:string";
-@use "../mixins/images";
-@use "../config" as c;
+@use 'sass:string';
+@use '../mixins/images';
+@use '../config' as c;
 
 $object-fit-values: c.$object-fit-values !default;
 $object-position-classes: c.$object-position-classes !default;
@@ -13,7 +13,7 @@ $object-position-classes: c.$object-position-classes !default;
     @each $fit in $object-fit-values {
         &-#{$fit} {
             object-fit: $fit;
-            font-family: "object-fit: #{$fit};";
+            font-family: 'object-fit: #{$fit};';
         }
     }
 }
@@ -28,7 +28,7 @@ $object-position-classes: c.$object-position-classes !default;
 
                     @each $fit in $object-fit-values {
                         &.object-fit-#{$fit} {
-                            font-family: "object-fit: #{$fit}; object-position: #{$position};";
+                            font-family: 'object-fit: #{$fit}; object-position: #{$position};';
                         }
                     }
                 }

@@ -1,19 +1,19 @@
-@use "sass:list";
-@use "sass:map";
-@use "sass:math";
-@use "./compare";
-@use "../config" as c;
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:math';
+@use './compare';
+@use '../config' as c;
 
 $order: c.$order !default;
 $unit-order: c.$unit-order !default;
 
-@function sort($map, $sort-by: "values", $order: $order) {
+@function sort($map, $sort-by: 'values', $order: $order) {
     $less:  ();
     $equal: ();
     $large: ();
 
-    $values: list.index("values" "value" "val" "v", $sort-by);
-    $keys: list.index("keys" "key" "k", $sort-by);
+    $values: list.index('values' 'value' 'val' 'v', $sort-by);
+    $keys: list.index('keys' 'key' 'k', $sort-by);
     @if not ($values or $keys) {
         @error "Wrong value for $sort-by argument: was #{$sort-by}, should be 'keys' or 'values'.";
     }
@@ -40,11 +40,11 @@ $unit-order: c.$unit-order !default;
     @return $map;
 }
 
-@function sort-units($map, $sort-by: "values", $order: $unit-order) {
+@function sort-units($map, $sort-by: 'values', $order: $unit-order) {
     $sorted: ();
 
-    $values: list.index("values" "value" "val" "v", $sort-by);
-    $keys: list.index("keys" "key" "k", $sort-by);
+    $values: list.index('values' 'value' 'val' 'v', $sort-by);
+    $keys: list.index('keys' 'key' 'k', $sort-by);
     @if not ($values or $keys) {
         @error "Wrong value for $sort-by argument: was #{$sort-by}, should be 'keys' or 'values'.";
     }

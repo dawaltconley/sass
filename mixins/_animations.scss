@@ -1,5 +1,5 @@
-@use "sass:map";
-@use "sass:math";
+@use 'sass:map';
+@use 'sass:math';
 
 $class-name: 'animate' !default;
 $load-delay: 5s !default;
@@ -83,10 +83,10 @@ $swipe-animation-count: 0;
 
     $reverse: 1;
 
-    @if $dir == "right" {
+    @if $dir == 'right' {
         $reverse: -1;
-    } @else if $dir != "left" {
-        @warn "`#{$dir}` is an invalid value for the $dir variable. Only `left` or `right` are supported."
+    } @else if $dir != 'left' {
+        @warn '`#{$dir}` is an invalid value for the $dir variable. Only `left` or `right` are supported.'
     }
     
     @keyframes #{$swipe-animation-name} {

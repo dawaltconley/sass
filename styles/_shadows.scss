@@ -1,7 +1,7 @@
 // extending from
-@use "../config";
-@use "./placeholders";
-@use "./layout";
+@use '../config';
+@use './placeholders';
+@use './layout';
 
 $drop-shadow: config.$text-shadow !default;
 $density: 0.3 !default; // opacity of shadow at center
@@ -20,7 +20,7 @@ $overflow: 50% !default; // how far the shadow extends beyond the element, relat
     @extend %relative, %overflow-v;
 
     &::before {
-        content: "";
+        content: '';
         position: absolute;
         top: -$overflow;
         left: -$overflow;

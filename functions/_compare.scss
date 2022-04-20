@@ -1,19 +1,19 @@
-@use "sass:list";
-@use "sass:map";
-@use "sass:math";
-@use "sass:meta";
-@use "sass:string";
-@use "../config" as c;
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:math';
+@use 'sass:meta';
+@use 'sass:string';
+@use '../config' as c;
 
 $order: c.$order !default;
 
 @function lt($a, $b, $order: $order) {
-    @if meta.type-of($a) == "number" and meta.type-of($b) == "number" {
+    @if meta.type-of($a) == 'number' and meta.type-of($b) == 'number' {
         @return $a < $b;
     }
 
-    $a: string.to-lower-case($a + string.unquote(""));
-    $b: string.to-lower-case($b + string.unquote(""));
+    $a: string.to-lower-case($a + string.unquote(''));
+    $b: string.to-lower-case($b + string.unquote(''));
 
     @for $i from 1 through math.min(string.length($a), string.length($b)) {
         $char-a: string.slice($a, $i, $i);
@@ -33,7 +33,7 @@ $order: c.$order !default;
         @if map.has-key($bp-list, $breakpoint) {
             $breakpoint: map.get($bp-list, $breakpoint);
         } @else {
-            @error "#{$breakpoint} is not a known breakpoint."
+            @error '#{$breakpoint} is not a known breakpoint.'
         }
     } @else if $type != number {
         @error "Breakpoint must either be a number or the name of a known breakpoint. '#{$breakpoint}' is a #{$type}"

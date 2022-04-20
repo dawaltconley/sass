@@ -1,9 +1,9 @@
-@use "sass:map";
-@use "../config" as c;
-@use "../mixins/layout";
+@use 'sass:map';
+@use '../config' as c;
+@use '../mixins/layout';
 
 // extending from
-@use "./layout" as l;
+@use './layout' as l;
 
 $breakpoint: map.get(c.$bp, mobile) or 600px !default;
 $padding-mobile: map.get(c.$spacings, m) or c.$default-spacing or 30px !default;

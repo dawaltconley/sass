@@ -1,4 +1,4 @@
-@use "sass:map";
+@use 'sass:map';
 
 // Build Variables
 
@@ -8,7 +8,7 @@ $device-dppx:           () !default;
 
 // Basic Variables
 
-$base-font-family:      "Raleway", sans-serif !default;
+$base-font-family:      'Raleway', sans-serif !default;
 $base-font-weight:      400 !default;
 $base-line-height:      1.4 !default;
 $base-line-length:      36em !default;
@@ -28,8 +28,8 @@ $perspective:           2000px !default;
 // Generated Classes
 
 $font-sizes: (
-    "base": 1.25rem,
-    "icon": 1.5rem,
+    'base': 1.25rem,
+    'icon': 1.5rem,
 ) !default;
 
 $base-font-size: map.get($font-sizes, base) !default;
@@ -41,11 +41,11 @@ $base-font-size: map.get($font-sizes, base) !default;
 // Sizes
 
 $sizes: (
-    "full":             100%,
-    "half":             50%,
-    "screen":           100vw 100vh,
-    "no":               0,
-    "auto":             auto,
+    'full':             100%,
+    'half':             50%,
+    'screen':           100vw 100vh,
+    'no':               0,
+    'auto':             auto,
 ) !default;
 
 @function size($name) {
@@ -55,12 +55,12 @@ $sizes: (
 // Spacings
 
 $spacings: (
-    "auto":     auto,
-    "0":        0,
-    "s":        15px,
-    "m":        30px,
-    "l":        60px,
-    "full":     100%,
+    'auto':     auto,
+    '0':        0,
+    's':        15px,
+    'm':        30px,
+    'l':        60px,
+    'full':     100%,
 ) !default;
 
 $default-spacing: map.get($spacings, m) !default;
@@ -72,7 +72,7 @@ $default-spacing: map.get($spacings, m) !default;
 // Borders
 
 $borders: (
-    "basic": (
+    'basic': (
         width: 1px,
         style: solid,
     ),
@@ -92,9 +92,9 @@ $object-position-classes: true !default;
 // Transitions
 
 $transitions: (
-    "short":    .25s,
-    "default": .3s,
-    "long":     1s,
+    'short':    .25s,
+    'default': .3s,
+    'long':     1s,
 ) !default;
 
 @function transition($name) {
@@ -104,9 +104,9 @@ $transitions: (
 // Breakpoints
 
 $bp: (
-    "laptop":   1000px,
-    "tablet":   800px,
-    "mobile":   600px,
+    'laptop':   1000px,
+    'tablet':   800px,
+    'mobile':   600px,
 ) !default;
 
 @function bp($name) {
@@ -115,11 +115,11 @@ $bp: (
 
 // Functional
 
-$angles: ("top": 0deg, "bottom": 180deg, "left": 90deg, "right": 270deg);
+$angles: ('top': 0deg, 'bottom': 180deg, 'left': 90deg, 'right': 270deg);
 
 $order:
-  "!" "#" "$" "%" "&" "'" "(" ")" "*" "+" "," "-" "." "/" "[" "\\" "]" "^" "_" "{" "|" "}" "~"
-  "0" "1" "2" "3" "4" "5" "6" "7" "8" "9"
-  "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z" !default;
+  '!' '#' '$' '%' '&' "'" '(' ')' '*' '+' ',' '-' '.' '/' '[' '\\' ']' '^' '_' '{' '|' '}' '~'
+  '0' '1' '2' '3' '4' '5' '6' '7' '8' '9'
+  'a' 'b' 'c' 'd' 'e' 'f' 'g' 'h' 'i' 'j' 'k' 'l' 'm' 'n' 'o' 'p' 'q' 'r' 's' 't' 'u' 'v' 'w' 'x' 'y' 'z' !default;
 
-$unit-order: "px" "em" "rem" "%" !default;
+$unit-order: 'px' 'em' 'rem' '%' !default;

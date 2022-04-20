@@ -1,6 +1,6 @@
-@use "sass:list";
-@use "sass:selector";
-@use "./lists";
+@use 'sass:list';
+@use 'sass:selector';
+@use './lists';
 
 @function last($selectors, $prepend: null, $append: null) {
     @for $i from 1 through list.length($selectors) {

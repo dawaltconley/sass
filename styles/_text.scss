@@ -1,6 +1,6 @@
-@use "sass:list";
-@use "sass:map";
-@use "../config" as c;
+@use 'sass:list';
+@use 'sass:map';
+@use '../config' as c;
 
 $text-shadow: c.$text-shadow !default;
 $full-shadow: c.$full-shadow !default;
@@ -86,7 +86,7 @@ $full-shadow: c.$full-shadow !default;
     @extend .text-justify;
 
     &::after {
-        content: "";
+        content: '';
         display: inline-block;
         width: 100%;
     }

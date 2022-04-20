@@ -1,15 +1,15 @@
-@use "sass:list";
-@use "sass:map";
-@use "sass:math";
-@use "sass:meta";
-@use "sass:selector";
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:math';
+@use 'sass:meta';
+@use 'sass:selector';
 @use '../functions/maps';
 @use '../functions/selectors';
 @use '../functions/compare';
-@use "../config" as var;
+@use '../config' as var;
 
 // extending from
-@use "../styles/placeholders";
+@use '../styles/placeholders';
 
 $possible-queries: (
     lt: max,
@@ -19,7 +19,7 @@ $possible-queries: (
 );
 
 @mixin _media($query, $value) {
-    @if ($query == "min") and (list.index('px', math.unit($value))) {
+    @if ($query == 'min') and (list.index('px', math.unit($value))) {
         $value: $value + 1;
     }
     @media screen and (#{$query}-width: $value) {
@@ -47,7 +47,7 @@ $possible-queries: (
             $sorted-bp: maps.sort-units($bp-map, $order: px em);
             @for $i from 1 through list.length($sorted-bp) {
                 $unit-set: maps.sort(list.nth($sorted-bp, $i));
-                @if $query == "max" {
+                @if $query == 'max' {
                     $unit-set: maps.reverse($unit-set);
                 }
                 $sorted-bp: list.set-nth($sorted-bp, $i, $unit-set);
@@ -83,7 +83,7 @@ $possible-queries: (
 
 @mixin bg-video-wrapper($x: 100vw, $y: 100vh, $ratio: 16/9) {
     @if math.unit($x) != vw or math.unit($y) != vh {
-        @error "Error in bg-video-wrapper mixin: height and width of the wrapper must be specified in the corresponding viewport unit.";
+        @error 'Error in bg-video-wrapper mixin: height and width of the wrapper must be specified in the corresponding viewport unit.';
     }
 
     max-width: $x;
@@ -98,11 +98,11 @@ $possible-queries: (
 }
 
 @mixin columns($columns, $spacing: 0px, $offset: null) {
-    @if not($columns > 1) { @error "columns mixin must have more than one column." }
+    @if not($columns > 1) { @error 'columns mixin must have more than one column.' }
     $width: math.div(100%, $columns);
-    $row-end: $columns + "n";
+    $row-end: $columns + 'n';
     @if $offset {
-        $row-end: $row-end + "+#{$offset}";
+        $row-end: $row-end + '+#{$offset}';
     }
 
     width: calc(#{$width} - #{math.div($spacing * ($columns - 1), $columns)});
@@ -138,7 +138,7 @@ $possible-queries: (
             $breakpoint: list.nth($breakpoints, $i);
             $columns: null;
             @if list.length($breakpoint) > 2 {
-                @error "the responsive-columns mixin only accepts one or two items per breakpoint: the breakpoint and (optionally) the number of columns.";
+                @error 'the responsive-columns mixin only accepts one or two items per breakpoint: the breakpoint and (optionally) the number of columns.';
             } @else if list.length($breakpoint) == 2 {
                 $columns: list.nth($breakpoint, 2);
                 $breakpoint: list.nth($breakpoint, 1);
@@ -165,10 +165,10 @@ $possible-queries: (
             $bp: list.nth(list.nth($bp-col-map, $i), 1);
             $col: list.nth(list.nth($bp-col-map, $i), 2);
             @if not $col { $col: $last-col + 1; }
-            $query: "screen and (min-width: #{$bp + 1px})";
+            $query: 'screen and (min-width: #{$bp + 1px})';
             @if $i < list.length($bp-col-map) {
                 $bp-next: list.nth(list.nth($bp-col-map, $i+1), 1);
-                $query: "#{$query} and (max-width: #{$bp-next})";
+                $query: '#{$query} and (max-width: #{$bp-next})';
                 $last-col: $col;
             }
             @media #{$query} {
@@ -185,35 +185,35 @@ $possible-queries: (
 
 // This mixin applies the effects its contents when a element
 // with class "hover" (either same element or nearest parent) is hovered
-@mixin hover($hover-class: "hover") {
+@mixin hover($hover-class: 'hover') {
     @at-root &.#{$hover-class}:hover,
-    #{selectors.last(&, ".#{$hover-class}:hover >", ":not(.#{$hover-class})")},
-    #{selectors.last(&, ".#{$hover-class}:hover *:not(.#{$hover-class})", ":not(.#{$hover-class})")} {
+    #{selectors.last(&, '.#{$hover-class}:hover >', ':not(.#{$hover-class})')},
+    #{selectors.last(&, '.#{$hover-class}:hover *:not(.#{$hover-class})', ':not(.#{$hover-class})')} {
         @content;
     }
 }
 
-@mixin no-hover($hover-class: "hover") {
+@mixin no-hover($hover-class: 'hover') {
     @at-root &.#{$hover-class}:not(:hover),
-    #{selectors.last(&, ".#{$hover-class}:not(:hover) >", ":not(.#{$hover-class})")},
-    #{selectors.last(&, ".#{$hover-class}:not(:hover) *:not(.#{$hover-class})", ":not(.#{$hover-class})")} {
+    #{selectors.last(&, '.#{$hover-class}:not(:hover) >', ':not(.#{$hover-class})')},
+    #{selectors.last(&, '.#{$hover-class}:not(:hover) *:not(.#{$hover-class})', ':not(.#{$hover-class})')} {
         @content;
     }
 }
 
 // same idea with a target class
-@mixin target($target-class: "target") {
+@mixin target($target-class: 'target') {
     @at-root &.#{$target-class}:target,
-    #{selectors.last(&, ".#{$target-class}:target >", ":not(.#{$target-class})")},
-    #{selectors.last(&, ".#{$target-class}:target *:not(.#{$target-class})", ":not(.#{$target-class})")} {
+    #{selectors.last(&, '.#{$target-class}:target >', ':not(.#{$target-class})')},
+    #{selectors.last(&, '.#{$target-class}:target *:not(.#{$target-class})', ':not(.#{$target-class})')} {
         @content;
     }
 }
 
-@mixin no-target($target-class: "target") {
+@mixin no-target($target-class: 'target') {
     @at-root &.#{$target-class}:not(:target),
-    #{selectors.last(&, ".#{$target-class}:not(:target) >", ":not(#{$target-class})")},
-    #{selectors.last(&, ".#{$target-class}:not(:target) *:not(.#{$target-class})", ":not(.#{$target-class})")} {
+    #{selectors.last(&, '.#{$target-class}:not(:target) >', ':not(#{$target-class})')},
+    #{selectors.last(&, '.#{$target-class}:not(:target) *:not(.#{$target-class})', ':not(.#{$target-class})')} {
         @content;
     }
 }

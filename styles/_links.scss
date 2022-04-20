@@ -1,9 +1,9 @@
-@use "sass:map";
-@use "../config" as c;
+@use 'sass:map';
+@use '../config' as c;
 
 // extending from
-@use "./placeholders";
-@use "./base";
+@use './placeholders';
+@use './base';
 
 /*
  * Links

@@ -1,8 +1,8 @@
-@use "sass:math";
-@use "sass:list";
-@use "sass:map";
-@use "../config" as c;
-@use "../mixins/convenience" as mix;
+@use 'sass:math';
+@use 'sass:list';
+@use 'sass:map';
+@use '../config' as c;
+@use '../mixins/convenience' as mix;
 
 /*
  * Reset some basic elements
@@ -40,10 +40,10 @@ html, body {
 body {
     font: c.$base-font-weight list.slash(c.$base-font-size, c.$base-line-height) #{list.join(c.$base-font-family, (), 'comma', false)};
     -webkit-text-size-adjust: 100%;
-    -webkit-font-feature-settings: "kern" 1;
-    -moz-font-feature-settings: "kern" 1;
-    -o-font-feature-settings: "kern" 1;
-    font-feature-settings: "kern" 1;
+    -webkit-font-feature-settings: 'kern' 1;
+    -moz-font-feature-settings: 'kern' 1;
+    -o-font-feature-settings: 'kern' 1;
+    font-feature-settings: 'kern' 1;
     font-kerning: normal;
 }
 
@@ -258,7 +258,7 @@ pre {
  * Forms
  */
 
-input[type="text"], textarea {
+input[type='text'], textarea {
     border-width: 1px;
     border-style: solid;
     border-radius: 3px;
@@ -274,12 +274,12 @@ textarea {
     min-height: 8em;
 }
 
-input[type="checkbox"], label {
+input[type='checkbox'], label {
     cursor: pointer;
 }
 
-input[type="checkbox"] + label,
-label > input[type="checkbox"] + * {
+input[type='checkbox'] + label,
+label > input[type='checkbox'] + * {
     margin-left: 0.7ex;
     line-height: 0;
 }

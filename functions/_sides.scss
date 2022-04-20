@@ -1,14 +1,14 @@
-@use "sass:string";
+@use 'sass:string';
 
-$sides: "top", "bottom", "left", "right" !default;
+$sides: 'top', 'bottom', 'left', 'right' !default;
 
 @function get-orientation($side) {
-    @if $side == "top" or $side == "bottom" {
-        @return "vertical";
-    } @else if $side == "left" or $side == "right" {
-        @return "horizontal";
+    @if $side == 'top' or $side == 'bottom' {
+        @return 'vertical';
+    } @else if $side == 'left' or $side == 'right' {
+        @return 'horizontal';
     } @else {
-        @error "Not a valid side."
+        @error 'Not a valid side.'
     }
 }
 

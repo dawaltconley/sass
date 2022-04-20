@@ -1,4 +1,4 @@
-@use "sass:list";
+@use 'sass:list';
 @use '../config' as c;
 @use '../mixins/convenience' as mix;
 @use '../mixins/layout';
@@ -45,7 +45,7 @@ $z-range: c.$z-range !default;
 }
 
 .clearfix:after {
-    content: "";
+    content: '';
     display: table;
     clear: both;
     border-spacing: 0;

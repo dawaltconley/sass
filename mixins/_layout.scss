@@ -1,10 +1,10 @@
-@use "sass:list";
-@use "sass:map";
-@use "../functions/compare";
-@use "../functions/sides";
+@use 'sass:list';
+@use 'sass:map';
+@use '../functions/compare';
+@use '../functions/sides';
 
 // extend from
-@use "../styles/placeholders";
+@use '../styles/placeholders';
 
 @mixin size($name, $size) {
     $width: null;
@@ -17,7 +17,7 @@
         $width: list.nth($size, 1);
         $height: list.nth($size, 2);
     } @else {
-        @error "Wrong number of values in #{$name} size.";
+        @error 'Wrong number of values in #{$name} size.';
     }
 
     .#{$name} {
@@ -50,7 +50,7 @@
 }
 
 @mixin padding($name, $value) {
-    @if $value != "auto" {
+    @if $value != 'auto' {
         .padding-#{$name} {
             @include sides.all using ($side) {
                 padding-#{$side}: $value;
@@ -95,7 +95,7 @@
     align-items: center;
 
     &::before, &::after {
-        content: "";
+        content: '';
         flex: 1 1 auto;
         border-top-color: inherit;
     }
@@ -132,9 +132,9 @@
     $bp-last: list.nth($breakpoints, list.length($breakpoints));
 
     @if list.length($breakpoints) < 2 {
-        @error "Invalid breakpoint list: must contain at least two values.";
+        @error 'Invalid breakpoint list: must contain at least two values.';
     } @else if $bp-first < $bp-last {
-        @error "Invalid breakpoint list: values should proceed from highest to lowest";
+        @error 'Invalid breakpoint list: values should proceed from highest to lowest';
     }
 
     margin-left: auto;
@@ -148,7 +148,7 @@
         $invalid: null;
 
         @if $bp < $bp-next {
-            @error "Invalid breakpoint list: order must be consistent.";
+            @error 'Invalid breakpoint list: order must be consistent.';
         }
 
         @media screen and (max-width: $bp) {
