@@ -1,3 +1,4 @@
+@use "sass:map";
 @use "sass:math";
 
 @mixin animate($delay: 0s) {
@@ -8,6 +9,52 @@
     .animate-js & {
         animation-delay: $delay;
     }
+}
+
+// Fade animations
+
+@mixin fade($direction, $distance: 30px) {
+    $transforms: (
+        'up': translate(0, $distance),
+        'down': translate(0, -$distance),
+        'left': translate(-$distance, 0),
+        'right': translate($distance, 0)
+    );
+    $transform: map.get($transform, $direction);
+
+    @if not $transform {
+        @error '$direction must be one of #{map.keys($transforms)}';
+    }
+
+    @keyframes #{$name} {
+        from {
+            opacity: 0;
+            transform: $transform;
+        }
+
+        to {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+    }
+
+    animation-name: $name;
+    animation-fill-mode: both;
+    animation-duration: 1s;
+    animation-delay: load-delay(1s);
+}
+
+@mixin fade-up($args...) {
+    @include fade(up, $args...);
+}
+@mixin fade-down($args...) {
+    @include fade(down, $args...);
+}
+@mixin fade-left($args...) {
+    @include fade(left, $args...);
+}
+@mixin fade-right($args...) {
+    @include fade(right, $args...);
 }
 
 // Swipe Animations
