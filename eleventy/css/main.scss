@@ -18,6 +18,13 @@
         "l":        60px,
         "full":     100%,
     ),
+    $borders: (
+        basic: (
+            width: 1px,
+            style: solid,
+            // color: red,
+        )
+    )
 );
 
 @use 'themes';

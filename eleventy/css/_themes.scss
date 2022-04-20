@@ -1,5 +1,21 @@
-@use 'sass-themes/build';
-@use 'sass-themes/styles/all';
+@use 'sass-themes';
+@use 'sass-themes/styles';
+
+body, .light {
+    @include sass-themes.create(
+        $text-color: #171717,
+        $background-color: white,
+        $brand-color: royalblue,
+    );
+}
+
+.dark {
+    @include sass-themes.create(
+        $text-color: white,
+        $background-color: #171717,
+        $brand-color: royalblue,
+    );
+}
 
 .subtle-icon {
     @extend .subtle-link;
