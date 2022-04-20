@@ -1,14 +1,16 @@
 @use "sass:map";
 @use "sass:math";
 
-@mixin animate($delay: 0s) {
-    .animate & {
-        @content;
-    }
+$class-name: 'animate' !default;
+$load-delay: 5s !default;
+$load-delay-property: --animation-load-delay;
 
-    .animate-js & {
-        animation-delay: $delay;
-    }
+:root {
+    #{$load-delay-property}: #{$load-delay};
+}
+
+@function load-delay($delay) {
+    @return calc(var(#{$load-delay-property}) + #{$delay});
 }
 
 // Fade animations
@@ -62,7 +64,7 @@
 
 $swipe-animation-count: 0;
 
-@mixin swipe($items, $dir: left, $dist: 20%, $dur: 4s, $trans: 0.5s, $init-delay: 0s, $load-delay: 0s, $y: 0, $overlap: false) {
+@mixin swipe($items, $dir: left, $dist: 20%, $dur: 4s, $trans: 0.5s, $init-delay: 0s, $y: 0, $overlap: false) {
     $swipe-animation-count: $swipe-animation-count + 1 !global;
     $swipe-animation-name: swipe-animation-#{$swipe-animation-count}; // give the keyframe a unique name
 
@@ -110,25 +112,16 @@ $swipe-animation-count: 0;
         }
     }
 
-    .animate & {
-        animation-name: $swipe-animation-name;
-        animation-duration: $total-dur * $items;
-        animation-iteration-count: infinite;
-        animation-fill-mode: both;
-
-        @for $i from 1 through $items {
-            &:nth-child(#{$i}) {
-                animation-delay: ($i - 1) * $total-dur + $init-delay + $load-delay;
-            }
-        }
-    }
+    animation-name: $swipe-animation-name;
+    animation-duration: $total-dur * $items;
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
 
     @for $i from 1 through $items {
-        .animate-js &:nth-child(#{$i}) {
-            animation-delay: ($i - 1) * $total-dur + $init-delay;
+        &:nth-child(#{$i}) {
+            animation-delay: load-delay(($i - 1) * $total-dur + $init-delay);
         }
     }
-
 }
 
 // Slideshow animations
@@ -136,7 +129,7 @@ $swipe-animation-count: 0;
 
 $slide-animation-count: 0;
 
-@mixin slideshow($items, $dur: 4s, $trans: 0.5s, $init-delay: 0s, $load-delay: 0s, $z: 0) {
+@mixin slideshow($items, $dur: 4s, $trans: 0.5s, $init-delay: 0s, $z: 0) {
     $slide-animation-count: $slide-animation-count + 1 !global;
     $slide-animation-name: slide-animation-#{$slide-animation-count}; // give the keyframe a unique name
 
@@ -162,23 +155,14 @@ $slide-animation-count: 0;
         }
     }
 
-    .animate & {
-        animation-name: $slide-animation-name;
-        animation-duration: $total-dur * $items;
-        animation-iteration-count: infinite;
-        animation-fill-mode: forwards;
-
-        @for $i from 1 through $items {
-            &:nth-child(#{$i}) {
-                animation-delay: ($i - 1) * $total-dur + $init-delay + $load-delay;
-            }
-        }
-    }
+    animation-name: $slide-animation-name;
+    animation-duration: $total-dur * $items;
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards;
 
     @for $i from 1 through $items {
-        .animate-js &:nth-child(#{$i}) {
-            animation-delay: ($i - 1) * $total-dur + $init-delay;
+        &:nth-child(#{$i}) {
+            animation-delay: load-delay(($i - 1) * $total-dur + $init-delay);
         }
     }
-
 }
