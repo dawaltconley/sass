@@ -10,6 +10,9 @@
     }
 }
 
+// Swipe Animations
+// TODO old, needs looking at
+
 $swipe-animation-count: 0;
 
 @mixin swipe($items, $dir: left, $dist: 20%, $dur: 4s, $trans: 0.5s, $init-delay: 0s, $load-delay: 0s, $y: 0, $overlap: false) {
@@ -80,6 +83,9 @@ $swipe-animation-count: 0;
     }
 
 }
+
+// Slideshow animations
+// TODO how does it compare to carousel on jahleel's?
 
 $slide-animation-count: 0;
 
