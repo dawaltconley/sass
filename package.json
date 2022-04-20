@@ -4,6 +4,7 @@
   "description": "Reuseable & customizeable sass library.",
   "main": "_config.scss",
   "files": [
+    "index.scss",
     "functions/**/*",
     "mixins/**/*",
     "styles/**/*"
